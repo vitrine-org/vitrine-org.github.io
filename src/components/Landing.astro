@@ -24,7 +24,12 @@ const year = new Date().getFullYear();
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>{t.title}</title>
 		<meta name="description" content={t.description} />
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="theme-color" content="#f4f4f3" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)" />
 		<link rel="alternate" hreflang="en" href="https://vitrine-widgets.github.io/" />
 		<link rel="alternate" hreflang="it" href="https://vitrine-widgets.github.io/it/" />
 		<meta property="og:title" content={t.title} />
