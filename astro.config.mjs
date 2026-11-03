@@ -22,7 +22,21 @@ export default defineConfig({
 			editLink: {
 				baseUrl: 'https://github.com/vitrine-widgets/vitrine-widgets.github.io/edit/main/',
 			},
-			customCss: ['./src/styles/custom.css'],
+			components: {
+				Header: './src/components/DocsHeader.astro',
+			},
+			customCss: [
+				'@fontsource-variable/schibsted-grotesk',
+				'./src/styles/tokens.css',
+				'./src/styles/custom.css',
+			],
+			expressiveCode: {
+				styleOverrides: {
+					borderRadius: '0.75rem',
+					borderColor: 'var(--line)',
+					frames: { frameBoxShadowCssValue: 'none' },
+				},
+			},
 			sidebar: [
 				{
 					label: 'Getting started',

@@ -1,0 +1,40 @@
+---
+// The one top bar, shared by the landing page and the docs.
+import '../styles/bar.css';
+import icon from '../assets/vitrine.svg';
+import Icon from './Icon.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { strings, type Lang } from '../i18n/landing';
+
+interface Props {
+	lang: Lang;
+	/** Link for the language switch; defaults to the other locale's home. */
+	otherHref?: string;
+	/** Marks the Docs link as current. */
+	inDocs?: boolean;
+}
+
+const { lang, inDocs = false } = Astro.props;
+const t = strings[lang];
+const otherHref = Astro.props.otherHref ?? t.other.href;
+---
+
+<div class:list={['bar glass', { 'in-docs': inDocs }]}>
+	<a class="brand" href={t.base}>
+		<img src={icon.src} alt="" width="28" height="28" />
+		<span>Vitrine</span>
+	</a>
+	<div class="bar-search"><slot name="search" /></div>
+	<nav class="bar-nav" aria-label={t.nav.label}>
+		<a href={`${t.base}docs/introduction/`} aria-current={inDocs ? 'page' : undefined}>
+			<Icon name="book-2" />{t.nav.docs}
+		</a>
+		<a class="hide-narrow" href="https://github.com/vitrine-widgets/vitrine">
+			<Icon name="brand-github" />GitHub
+		</a>
+		<a class="bar-lang" href={otherHref} hreflang={lang === 'en' ? 'it' : 'en'}>
+			<Icon name="language" />{t.other.label}
+		</a>
+		<ThemeToggle label={t.nav.theme} />
+	</nav>
+</div>

@@ -1,0 +1,122 @@
+---
+// Windows 11 style shell icons, drawn for the hero desktop (each name is used once per page).
+interface Props {
+	name: 'pc' | 'bin' | 'documents' | 'text' | 'explorer' | 'terminal' | 'settings' | 'start';
+}
+const { name } = Astro.props;
+---
+
+<svg class="winicon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+	{
+		name === 'pc' && (
+			<>
+				<defs>
+					<linearGradient id="wi-pc" x1="0" y1="0" x2="1" y2="1">
+						<stop offset="0" stop-color="#7fd3ff" />
+						<stop offset="1" stop-color="#0a5fd1" />
+					</linearGradient>
+				</defs>
+				<rect x="4" y="8" width="40" height="27" rx="3" fill="#353a45" />
+				<rect x="6" y="10" width="36" height="23" rx="1.5" fill="url(#wi-pc)" />
+				<path d="M20 35h8l1.5 5h-11z" fill="#9aa3b2" />
+				<rect x="14" y="40" width="20" height="2.5" rx="1.25" fill="#c6ccd6" />
+			</>
+		)
+	}
+	{
+		name === 'bin' && (
+			<>
+				<defs>
+					<linearGradient id="wi-bin" x1="0" y1="0" x2="0" y2="1">
+						<stop offset="0" stop-color="#eef5fc" stop-opacity="0.95" />
+						<stop offset="1" stop-color="#b6c9df" stop-opacity="0.92" />
+					</linearGradient>
+				</defs>
+				<path d="M11 13h26l-2.6 29a3 3 0 0 1-3 2.7H16.6a3 3 0 0 1-3-2.7z" fill="url(#wi-bin)" stroke="#8aa1bf" />
+				<rect x="8.5" y="9" width="31" height="4.5" rx="2" fill="#dbe6f2" stroke="#8aa1bf" />
+				<path d="M19 19l1 20M24 19v20M29 19l-1 20" stroke="#9db2cb" stroke-width="1.6" stroke-linecap="round" />
+			</>
+		)
+	}
+	{
+		name === 'documents' && (
+			<>
+				<defs>
+					<linearGradient id="wi-doc-b" x1="0" y1="0" x2="0" y2="1">
+						<stop offset="0" stop-color="#ffd35c" />
+						<stop offset="1" stop-color="#f2ad25" />
+					</linearGradient>
+					<linearGradient id="wi-doc-f" x1="0" y1="0" x2="0" y2="1">
+						<stop offset="0" stop-color="#ffe28f" />
+						<stop offset="1" stop-color="#ffc63a" />
+					</linearGradient>
+				</defs>
+				<path d="M4 11a3 3 0 0 1 3-3h11l4 4h19a3 3 0 0 1 3 3v24a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="url(#wi-doc-b)" />
+				<rect x="11" y="13" width="24" height="16" rx="1.5" fill="#fff" />
+				<path d="M4 19a3 3 0 0 1 3-3h34a3 3 0 0 1 3 3v20a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="url(#wi-doc-f)" />
+				<rect x="19" y="23" width="10" height="13" rx="1.3" fill="#2f7de1" />
+				<path d="M21.5 27.5h5M21.5 30.5h5M21.5 33.5h3" stroke="#fff" stroke-width="1.2" stroke-linecap="round" />
+			</>
+		)
+	}
+	{
+		name === 'explorer' && (
+			<>
+				<defs>
+					<linearGradient id="wi-exp-b" x1="0" y1="0" x2="0" y2="1">
+						<stop offset="0" stop-color="#ffd35c" />
+						<stop offset="1" stop-color="#f2ad25" />
+					</linearGradient>
+					<linearGradient id="wi-exp-f" x1="0" y1="0" x2="0" y2="1">
+						<stop offset="0" stop-color="#ffe28f" />
+						<stop offset="1" stop-color="#ffc63a" />
+					</linearGradient>
+				</defs>
+				<path d="M4 11a3 3 0 0 1 3-3h11l4 4h19a3 3 0 0 1 3 3v24a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="url(#wi-exp-b)" />
+				<path d="M4 19a3 3 0 0 1 3-3h34a3 3 0 0 1 3 3v20a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="url(#wi-exp-f)" />
+				<rect x="4" y="16" width="40" height="3" fill="#2f7de1" opacity="0.85" />
+			</>
+		)
+	}
+	{
+		name === 'text' && (
+			<>
+				<path d="M11 4h18l10 10v28a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="#fff" stroke="#c4ccd7" />
+				<path d="M29 4v8a2 2 0 0 0 2 2h8" fill="#e5e9ef" stroke="#c4ccd7" />
+				<path d="M15 22h18M15 27h18M15 32h12" stroke="#7b8595" stroke-width="1.6" stroke-linecap="round" />
+			</>
+		)
+	}
+	{
+		name === 'terminal' && (
+			<>
+				<rect x="5" y="8" width="38" height="32" rx="5" fill="#2a2a2e" />
+				<path d="M5 13a5 5 0 0 1 5-5h28a5 5 0 0 1 5 5v2H5z" fill="#45454c" />
+				<path d="M13 22l6 5-6 5" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+				<path d="M22 33h10" stroke="#fff" stroke-width="2.4" stroke-linecap="round" />
+			</>
+		)
+	}
+	{
+		name === 'settings' && (
+			<>
+				<circle cx="24" cy="24" r="15" fill="none" stroke="#6b7586" stroke-width="6" stroke-dasharray="5.9 5.9" />
+				<circle cx="24" cy="24" r="12.5" fill="#8b95a6" />
+				<circle cx="24" cy="24" r="5.5" fill="#e3e7ed" />
+			</>
+		)
+	}
+	{
+		name === 'start' && (
+			<>
+				<defs>
+					<linearGradient id="wi-start" x1="0" y1="0" x2="1" y2="1">
+						<stop offset="0" stop-color="#28a8ea" />
+						<stop offset="1" stop-color="#0a5ed7" />
+					</linearGradient>
+				</defs>
+				<path d="M7 7h16.2v16.2H7zM24.8 7H41v16.2H24.8zM7 24.8h16.2V41H7zM24.8 24.8H41V41H24.8z" fill="url(#wi-start)" />
+			</>
+		)
+	}
+</svg>

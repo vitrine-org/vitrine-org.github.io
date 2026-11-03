@@ -1,0 +1,113 @@
+export type Lang = 'en' | 'it';
+
+const en = {
+	htmlLang: 'en',
+	locale: 'en-US',
+	title: 'Vitrine: desktop widgets for Windows',
+	description: 'Lightweight, interactive desktop widgets for Windows, drawn beneath your icons.',
+	base: '/',
+	other: { label: 'Italiano', href: '/it/' },
+	nav: { docs: 'Docs', roadmap: 'Roadmap', label: 'Main', theme: 'Switch theme (auto, light, dark)' },
+	pill: 'Vitrine 2 is in development. See the roadmap',
+	h1: 'Widgets that live under your icons',
+	lead: 'Vitrine puts clocks, gauges and anything you can write in JSX on your Windows desktop, on the same layer as the wallpaper. Your icons stay on top, and the widgets still answer your clicks.',
+	primary: 'Read the docs',
+	secondary: 'View on GitHub',
+	release: 'Coming as Vitrine 2.0.0 for Windows 10 and 11. Free and open source.',
+	desk: {
+		alt: 'A Windows desktop with Vitrine widgets under the desktop icons',
+		icons: ['This PC', 'Recycle Bin', 'Documents', 'notes.txt'],
+		search: 'Search',
+		todoTitle: 'Today',
+		todo: ['Water the plants', 'Back up photos', 'Call the dentist'],
+		cpu: 'CPU',
+		memory: 'Memory',
+		disk: 'Disk',
+	},
+	f1: {
+		h: 'Beneath your icons, still clickable',
+		p: 'Widgets sit between the wallpaper and the desktop icons. The icons stay visible and on top, and a click or scroll that misses an icon reaches the widget underneath.',
+		link: 'How it works',
+		layers: ['Wallpaper', 'Widgets', 'Icons'],
+	},
+	f2: {
+		h: 'A grid you arrange',
+		p: 'Turn on edit mode to move and resize widgets cell by cell. Every monitor gets its own grid, and the same widget can run several times, each copy with its own settings.',
+		link: 'Read the introduction',
+	},
+	f3: {
+		h: 'Write widgets in JSX',
+		p: 'A widget is a few lines of JSX with SolidJS reactivity, shipped as a single .vitrine package. It declares the permissions it needs, such as system metrics or a network host, and gets nothing else.',
+		link: 'See the architecture',
+	},
+	f4: {
+		h: 'Light on power',
+		p: 'Vitrine draws with its own Rust renderer instead of a browser engine. It repaints only the part of a widget that changed, and pauses when the desktop is hidden.',
+		caption: 'Repainted this second',
+		link: 'Follow the roadmap',
+	},
+	footer: {
+		about: 'Desktop widgets for Windows, drawn beneath your icons.',
+		docs: 'Documentation',
+		project: 'Project',
+		language: 'Language',
+		copy: 'Emanuele Frascella. Released under the MIT license.',
+	},
+};
+
+const it: typeof en = {
+	htmlLang: 'it',
+	locale: 'it-IT',
+	title: 'Vitrine: widget per il desktop di Windows',
+	description: 'Widget per il desktop di Windows, leggeri e interattivi, disegnati sotto le tue icone.',
+	base: '/it/',
+	other: { label: 'English', href: '/' },
+	nav: { docs: 'Docs', roadmap: 'Roadmap', label: 'Principale', theme: 'Cambia tema (automatico, chiaro, scuro)' },
+	pill: 'Vitrine 2 è in sviluppo. Guarda la roadmap',
+	h1: 'Widget che vivono sotto le tue icone',
+	lead: 'Vitrine porta orologi, indicatori e tutto ciò che puoi scrivere in JSX sul desktop di Windows, allo stesso livello dello sfondo. Le icone restano sopra, e i widget rispondono comunque ai tuoi clic.',
+	primary: 'Leggi la documentazione',
+	secondary: 'Vedi su GitHub',
+	release: 'In arrivo come Vitrine 2.0.0 per Windows 10 e 11. Libero e open source.',
+	desk: {
+		alt: 'Un desktop di Windows con i widget di Vitrine sotto le icone',
+		icons: ['Questo PC', 'Cestino', 'Documenti', 'note.txt'],
+		search: 'Cerca',
+		todoTitle: 'Oggi',
+		todo: ['Annaffiare le piante', 'Backup delle foto', 'Chiamare il dentista'],
+		cpu: 'CPU',
+		memory: 'Memoria',
+		disk: 'Disco',
+	},
+	f1: {
+		h: 'Sotto le icone, ma cliccabili',
+		p: 'I widget stanno tra lo sfondo e le icone del desktop. Le icone restano visibili e sopra, e un clic o uno scroll che non colpisce un\'icona arriva al widget sottostante.',
+		link: 'Come funziona',
+		layers: ['Sfondo', 'Widget', 'Icone'],
+	},
+	f2: {
+		h: 'Una griglia da sistemare',
+		p: 'Attiva la modalità modifica per spostare e ridimensionare i widget cella per cella. Ogni monitor ha la sua griglia, e lo stesso widget può girare più volte, ogni copia con le sue impostazioni.',
+		link: 'Leggi l\'introduzione',
+	},
+	f3: {
+		h: 'Widget scritti in JSX',
+		p: 'Un widget è qualche riga di JSX con la reattività di SolidJS, distribuito come un unico pacchetto .vitrine. Dichiara i permessi che gli servono, come le metriche di sistema o un host di rete, e non ottiene altro.',
+		link: 'Guarda l\'architettura',
+	},
+	f4: {
+		h: 'Consuma poco',
+		p: 'Vitrine disegna con un proprio renderer in Rust, senza motore di browser. Ridisegna solo la parte del widget che è cambiata, e si mette in pausa quando il desktop è nascosto.',
+		caption: 'Ridisegnato in questo secondo',
+		link: 'Segui la roadmap',
+	},
+	footer: {
+		about: 'Widget per il desktop di Windows, disegnati sotto le tue icone.',
+		docs: 'Documentazione',
+		project: 'Progetto',
+		language: 'Lingua',
+		copy: 'Emanuele Frascella. Distribuito con licenza MIT.',
+	},
+};
+
+export const strings = { en, it };

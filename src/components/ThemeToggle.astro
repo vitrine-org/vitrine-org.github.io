@@ -1,0 +1,50 @@
+---
+// Cycles the colour theme: auto → light → dark. Shares Starlight's storage key so the landing page
+// and the docs always agree.
+import Icon from './Icon.astro';
+
+interface Props {
+	label: string;
+}
+---
+
+<button class="theme-toggle" type="button" aria-label={Astro.props.label} title={Astro.props.label}>
+	<span class="tt tt-auto"><Icon name="device-desktop" /></span>
+	<span class="tt tt-light"><Icon name="sun" /></span>
+	<span class="tt tt-dark"><Icon name="moon" /></span>
+</button>
+
+<script is:inline>
+	(() => {
+		const KEY = 'starlight-theme';
+		const root = document.documentElement;
+		const read = () => {
+			try {
+				const s = localStorage.getItem(KEY);
+				return s === 'light' || s === 'dark' ? s : 'auto';
+			} catch {
+				return 'auto';
+			}
+		};
+		const apply = (pref) => {
+			const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+			root.dataset.theme = pref === 'auto' ? sys : pref;
+			root.dataset.themePref = pref;
+		};
+		root.dataset.themePref = read();
+		const btn = document.currentScript.previousElementSibling;
+		btn.addEventListener('click', () => {
+			const order = ['auto', 'light', 'dark'];
+			const next = order[(order.indexOf(read()) + 1) % order.length];
+			try {
+				localStorage.setItem(KEY, next === 'auto' ? '' : next);
+			} catch {}
+			apply(next);
+			const select = document.querySelector('starlight-theme-select select');
+			if (select) select.value = next;
+		});
+		matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
+			if (read() === 'auto') apply('auto');
+		});
+	})();
+</script>

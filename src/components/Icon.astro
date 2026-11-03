@@ -1,0 +1,20 @@
+---
+// Inline Tabler icon (outline set), read at build time.
+import fs from 'node:fs';
+import { createRequire } from 'node:module';
+
+interface Props {
+	name: string;
+	size?: number;
+}
+
+const { name, size = 18 } = Astro.props;
+const require = createRequire(import.meta.url);
+const svg = fs
+	.readFileSync(require.resolve(`@tabler/icons/outline/${name}.svg`), 'utf8')
+	.replace(/width="24"\s*height="24"/, `width="${size}" height="${size}"`)
+	.replace(/class="[^"]*"/, 'class="icon" aria-hidden="true" focusable="false"')
+	.replace(/\s*<path stroke="none" d="M0 0h24v24H0z" fill="none" \/>/, '');
+---
+
+<Fragment set:html={svg} />

@@ -1,0 +1,152 @@
+/*
+ * Vitrine design tokens, shared by the landing page and the docs.
+ *
+ * Type scale: the classic typographic scale (Bringhurst), in px:
+ *   12 · 14 · 16 · 18 · 21 · 24 · 36 · 48 · 60 · 72
+ * Spacing: a 4px base, 10 steps: 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96 · 128
+ * Background: soft off-white (#f4f4f3) and soft black (#161616), not pure white/black.
+ * Grid: 12 columns from 900px, 8 from 560px, 4 below; 24px gutters and margins (16px on phones);
+ *   content never wider than 1152px.
+ */
+
+:root {
+	/* Type */
+	--font: 'Schibsted Grotesk Variable', 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
+	--mono: 'Cascadia Code', 'Cascadia Mono', Consolas, ui-monospace, monospace;
+	--fs-12: 0.75rem;
+	--fs-14: 0.875rem;
+	--fs-16: 1rem;
+	--fs-18: 1.125rem;
+	--fs-21: 1.3125rem;
+	--fs-24: 1.5rem;
+	--fs-36: 2.25rem;
+	--fs-48: 3rem;
+	--fs-60: 3.75rem;
+	--fs-72: 4.5rem;
+	--lh-display: 1.05;
+	--lh-heading: 1.15;
+	--lh-ui: 1.4;
+	--lh-body: 1.6;
+	--track-display: -0.04em;
+	--track-heading: -0.025em;
+	--fw-regular: 400;
+	--fw-medium: 500;
+	--fw-semibold: 600;
+	--fw-bold: 700;
+
+	/* Spacing */
+	--sp-1: 0.25rem;
+	--sp-2: 0.5rem;
+	--sp-3: 0.75rem;
+	--sp-4: 1rem;
+	--sp-5: 1.5rem;
+	--sp-6: 2rem;
+	--sp-7: 3rem;
+	--sp-8: 4rem;
+	--sp-9: 6rem;
+	--sp-10: 8rem;
+
+	/* Grid */
+	--grid-max: 72rem;
+	--grid-cols: 12;
+	--grid-gutter: var(--sp-5);
+	--grid-margin: var(--sp-5);
+	--section-gap: var(--sp-10);
+
+	/* Shape */
+	--radius-s: 8px;
+	--radius-m: 12px;
+	--radius-l: 16px;
+	--radius-xl: 24px;
+	--radius-pill: 999px;
+
+	/* Brand, from the app icon */
+	--blue: #2b4de0;
+	--cyan: #00b8f5;
+	--mint: #6bf2e2;
+	--sun: #ffb23e;
+	--coral: #ff4d73;
+
+	/* Light theme: off-white page, near-black text */
+	--bg: #f4f4f3;
+	--text-1: #141414;
+	--text-2: #3d3d3d;
+	--text-3: #6b6b6b;
+	--line: rgb(0 0 0 / 0.09);
+	--line-strong: rgb(0 0 0 / 0.16);
+	--link: #2b4de0;
+	--link-hover: #1a35b8;
+	--focus: #00b8f5;
+	--glass: rgb(255 255 255 / 0.62);
+	--bar-bg: rgb(255 255 255 / 0.7);
+	--glass-edge: rgb(0 0 0 / 0.08);
+	--glass-hl: rgb(255 255 255 / 1);
+	--glass-shadow: 0 24px 48px -28px rgb(0 0 0 / 0.22);
+	--glow-color: rgb(0 184 245 / 0.08);
+	--code-k: #2b4de0;
+	--code-s: #b4380a;
+	--code-f: #0b6e85;
+	--code-t: #b81f55;
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--bg: #161616;
+		--text-1: #f2f2f2;
+		--text-2: #c2c2c2;
+		--text-3: #8f8f8f;
+		--line: rgb(255 255 255 / 0.11);
+		--line-strong: rgb(255 255 255 / 0.2);
+		--link: #6ea8ff;
+		--link-hover: #a9cbff;
+		--glass: rgb(255 255 255 / 0.05);
+		--bar-bg: rgb(30 30 30 / 0.66);
+		--glass-edge: rgb(255 255 255 / 0.12);
+		--glass-hl: rgb(255 255 255 / 0.12);
+		--glass-shadow: 0 24px 48px -28px rgb(0 0 0 / 0.9);
+		--glow-color: rgb(255 255 255 / 0.08);
+		--code-k: #93b2ff;
+		--code-s: #ffb86b;
+		--code-f: #6bf2e2;
+		--code-t: #ff8fab;
+		color-scheme: dark;
+	}
+}
+
+:root[data-theme='dark'] {
+	--bg: #161616;
+	--text-1: #f2f2f2;
+	--text-2: #c2c2c2;
+	--text-3: #8f8f8f;
+	--line: rgb(255 255 255 / 0.11);
+	--line-strong: rgb(255 255 255 / 0.2);
+	--link: #6ea8ff;
+	--link-hover: #a9cbff;
+	--glass: rgb(255 255 255 / 0.05);
+	--bar-bg: rgb(30 30 30 / 0.66);
+	--glass-edge: rgb(255 255 255 / 0.12);
+	--glass-hl: rgb(255 255 255 / 0.12);
+	--glass-shadow: 0 24px 48px -28px rgb(0 0 0 / 0.9);
+	--glow-color: rgb(255 255 255 / 0.08);
+	--code-k: #93b2ff;
+	--code-s: #ffb86b;
+	--code-f: #6bf2e2;
+	--code-t: #ff8fab;
+	color-scheme: dark;
+}
+
+@media (max-width: 899px) {
+	:root {
+		--grid-cols: 8;
+		--section-gap: var(--sp-9);
+	}
+}
+
+@media (max-width: 559px) {
+	:root {
+		--grid-cols: 4;
+		--grid-gutter: var(--sp-4);
+		--grid-margin: var(--sp-4);
+	}
+}

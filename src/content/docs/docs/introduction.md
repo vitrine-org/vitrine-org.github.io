@@ -31,6 +31,6 @@ Vitrine 1 rendered themes with WebView2, a full Chromium engine. Vitrine 2 has i
 
 ## Widgets are packages
 
-A widget is a `.vwidget` file: a manifest, a JavaScript bundle written with `@vitrine/sdk` (JSX and
+A widget is a `.vitrine` file: a manifest, a JavaScript bundle written with `@vitrine/sdk` (JSX and
 SolidJS), assets such as fonts and images, and an optional settings schema. Each widget declares the
 permissions it needs, for example CPU metrics or a specific weather API host.

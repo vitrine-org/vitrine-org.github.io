@@ -1,0 +1,238 @@
+---
+import '@fontsource-variable/schibsted-grotesk';
+import '../styles/landing.css';
+import icon from '../assets/vitrine.svg';
+import Icon from './Icon.astro';
+import SiteBar from './SiteBar.astro';
+import WinIcon from './WinIcon.astro';
+import { strings, type Lang } from '../i18n/landing';
+
+interface Props {
+	lang: Lang;
+}
+
+const t = strings[Astro.props.lang];
+const docs = `${t.base}docs/`;
+const gh = 'https://github.com/vitrine-widgets/vitrine';
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang={t.htmlLang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{t.title}</title>
+		<meta name="description" content={t.description} />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="alternate" hreflang="en" href="https://vitrine-widgets.github.io/" />
+		<link rel="alternate" hreflang="it" href="https://vitrine-widgets.github.io/it/" />
+		<meta property="og:title" content={t.title} />
+		<meta property="og:description" content={t.description} />
+		<script is:inline>
+			try {
+				const s = localStorage.getItem('starlight-theme');
+				if (s === 'light' || s === 'dark') document.documentElement.dataset.theme = s;
+			} catch {}
+			if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				const h = document.documentElement;
+				h.classList.add('anim');
+				setTimeout(() => { if (!h.classList.contains('ready')) h.classList.remove('anim'); }, 4000);
+			}
+		</script>
+	</head>
+	<body>
+		<header class="site-header">
+			<SiteBar lang={Astro.props.lang} />
+		</header>
+
+		<main>
+			<section class="hero container grid">
+				<a class="pill glass" href={`${docs}roadmap/`} data-intro><Icon name="route" size={16} />{t.pill}</a>
+				<h1 data-intro>{t.h1}</h1>
+				<p class="lead" data-intro>{t.lead}</p>
+				<div class="actions" data-intro>
+					<a class="button primary" href={`${docs}introduction/`}><Icon name="book-2" />{t.primary}</a>
+					<a class="button glass" href={gh}><Icon name="brand-github" />{t.secondary}</a>
+				</div>
+				<p class="release" data-intro>{t.release}</p>
+
+				<div class="stage" data-intro-stage>
+					<div class="desk" role="img" aria-label={t.desk.alt} data-tilt data-locale={t.locale}>
+						<div class="wall" data-depth="1.6">
+							<svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+								<defs>
+									<radialGradient id="wp-bg" cx="52%" cy="58%" r="78%">
+										<stop offset="0" stop-color="#dcefff" />
+										<stop offset="0.38" stop-color="#7db3f2" />
+										<stop offset="0.75" stop-color="#2a63cf" />
+										<stop offset="1" stop-color="#0d3497" />
+									</radialGradient>
+									<linearGradient id="wp-p" x1="0" y1="0" x2="0" y2="1">
+										<stop offset="0" stop-color="#1a5be0" stop-opacity="0.95" />
+										<stop offset="0.6" stop-color="#5d9cf5" stop-opacity="0.8" />
+										<stop offset="1" stop-color="#ffffff" stop-opacity="0.95" />
+									</linearGradient>
+									<linearGradient id="wp-q" x1="0" y1="0" x2="0" y2="1">
+										<stop offset="0" stop-color="#0b3fb3" stop-opacity="0.9" />
+										<stop offset="1" stop-color="#9cc8ff" stop-opacity="0.85" />
+									</linearGradient>
+								</defs>
+								<rect width="1600" height="1000" fill="url(#wp-bg)" />
+								<g transform="translate(800 600)">
+									{[-64, 64, -40, 40, -14, 14, 0].map((a, i) => (
+										<path
+											d="M0 0C-130-150-70-360 0-430C70-360 130-150 0 0Z"
+											fill={i % 2 ? 'url(#wp-p)' : 'url(#wp-q)'}
+											opacity={0.55 + i * 0.06}
+											transform={`rotate(${a}) scale(${1 - Math.abs(a) / 220})`}
+										/>
+									))}
+								</g>
+							</svg>
+						</div>
+						<div class="cells" data-depth="0.9"></div>
+						<div class="layer widgets" data-depth="0.9">
+							<div class="w w-clock acrylic" data-widget>
+								<span class="time" data-clock="hm">12:41</span>
+								<span class="date" data-date data-lang={t.htmlLang}></span>
+							</div>
+							<div class="w w-sys acrylic" data-widget>
+								<div class="meter"><span>{t.desk.cpu}</span><i data-meter style="--v:.32"></i></div>
+								<div class="meter"><span>{t.desk.memory}</span><i data-meter style="--v:.58"></i></div>
+								<div class="meter"><span>{t.desk.disk}</span><i style="--v:.71"></i></div>
+							</div>
+							<div class="w w-todo acrylic" data-widget>
+								<span class="w-title">{t.desk.todoTitle}</span>
+								{t.desk.todo.map((item, i) => (
+									<label class="todo">
+										<input type="checkbox" checked={i === 1} tabindex="-1" />
+										<span>{item}</span>
+									</label>
+								))}
+							</div>
+						</div>
+						<div class="layer icons" data-depth="0.4">
+							{t.desk.icons.map((label, i) => (
+								<div class="dicon">
+									<WinIcon name={(['pc', 'bin', 'documents', 'text'] as const)[i]} />
+									<span class="dlabel">{label}</span>
+								</div>
+							))}
+						</div>
+						<div class="taskbar" data-depth="0.15">
+							<div class="tb-center">
+								<span class="tb-app"><WinIcon name="start" /></span>
+								<span class="tb-search"><Icon name="search" />{t.desk.search}</span>
+								<span class="tb-app tb-search-icon"><Icon name="search" /></span>
+								<span class="tb-app"><WinIcon name="explorer" /></span>
+								<span class="tb-app"><WinIcon name="terminal" /></span>
+								<span class="tb-app"><WinIcon name="settings" /></span>
+								<span class="tb-app running"><img src={icon.src} alt="" /></span>
+							</div>
+							<div class="tb-tray">
+								<Icon name="chevron-up" />
+								<span class="tb-tray-icons"><Icon name="wifi" /><Icon name="volume" /><Icon name="battery-3" /></span>
+								<span class="tb-clock"><span data-tray-time>00:00</span><span data-tray-date>01/01/2026</span></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="feature container grid">
+				<div class="feature-text" data-reveal>
+					<h2>{t.f1.h}</h2>
+					<p>{t.f1.p}</p>
+					<a href={`${docs}architecture/`}><Icon name="stack-2" />{t.f1.link}</a>
+				</div>
+				<div class="visual stack" aria-hidden="true" data-stack>
+					{t.f1.layers.map((label, i) => (
+						<div class={`plane-wrap pw-${i}`} data-plane={i}>
+							<div class={`plane plane-${i}`}>
+								{i === 1 && (<><b></b><b></b><b></b></>)}
+								{i === 2 && (<><s></s><s></s><s></s></>)}
+							</div>
+							<span class="plane-label">{label}</span>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<section class="feature reverse container grid">
+				<div class="feature-text" data-reveal>
+					<h2>{t.f2.h}</h2>
+					<p>{t.f2.p}</p>
+					<a href={`${docs}introduction/`}><Icon name="layout-grid" />{t.f2.link}</a>
+				</div>
+				<div class="visual board glass" aria-hidden="true" data-board>
+					<div class="tile tile-a acrylic" data-tile></div>
+					<div class="tile tile-b acrylic" data-tile></div>
+					<div class="tile tile-c acrylic editing" data-tile><i class="handle"></i></div>
+				</div>
+			</section>
+
+			<section class="feature container grid">
+				<div class="feature-text" data-reveal>
+					<h2>{t.f3.h}</h2>
+					<p>{t.f3.p}</p>
+					<a href={`${docs}architecture/`}><Icon name="code" />{t.f3.link}</a>
+				</div>
+				<div class="visual code-wrap" data-code>
+					<pre class="code glass" aria-label="Clock widget written in JSX"><code><span class="ln"><span class="k">import</span> {'{'} createSignal, onCleanup {'}'} <span class="k">from</span> <span class="s">"solid-js"</span>;</span>
+<span class="ln"> </span>
+<span class="ln"><span class="k">export default function</span> <span class="f">Clock</span>() {'{'}</span>
+<span class="ln">  <span class="k">const</span> [now, setNow] = <span class="f">createSignal</span>(<span class="k">new</span> Date());</span>
+<span class="ln">  <span class="k">const</span> timer = <span class="f">setInterval</span>(() =&gt; <span class="f">setNow</span>(<span class="k">new</span> Date()), <span class="n">1000</span>);</span>
+<span class="ln">  <span class="f">onCleanup</span>(() =&gt; <span class="f">clearInterval</span>(timer));</span>
+<span class="ln"> </span>
+<span class="ln">  <span class="k">return</span> <span class="t">&lt;text&gt;</span>{'{'}<span class="f">now</span>().toLocaleTimeString(){'}'}<span class="t">&lt;/text&gt;</span>;</span>
+<span class="ln">{'}'}</span></code></pre>
+					<div class="mini acrylic" aria-hidden="true"><span data-clock="hms">12:41:07</span></div>
+				</div>
+			</section>
+
+			<section class="feature reverse container grid">
+				<div class="feature-text" data-reveal>
+					<h2>{t.f4.h}</h2>
+					<p>{t.f4.p}</p>
+					<a href={`${docs}roadmap/`}><Icon name="route" />{t.f4.link}</a>
+				</div>
+				<div class="visual repaint glass" aria-hidden="true">
+					<div class="repaint-clock">
+						<span data-part="hm">12:41</span><span class="sec" data-part="s">:07</span>
+					</div>
+					<p class="caption"><i></i>{t.f4.caption}</p>
+				</div>
+			</section>
+		</main>
+
+		<footer class="foot container">
+			<div class="foot-top grid">
+				<div class="foot-about">
+					<a class="brand" href={t.base}>
+						<img src={icon.src} alt="" width="28" height="28" />
+						<span>Vitrine</span>
+					</a>
+					<p>{t.footer.about}</p>
+				</div>
+				<div class="foot-col">
+					<h3>{t.footer.project}</h3>
+					<a href={`${docs}introduction/`}><Icon name="book-2" size={16} />{t.footer.docs}</a>
+					<a href={`${docs}roadmap/`}><Icon name="route" size={16} />{t.nav.roadmap}</a>
+					<a href={gh}><Icon name="brand-github" size={16} />GitHub</a>
+				</div>
+				<div class="foot-col">
+					<h3>{t.footer.language}</h3>
+					<a href="/" hreflang="en">English</a>
+					<a href="/it/" hreflang="it">Italiano</a>
+				</div>
+			</div>
+			<p class="copy">© {year} {t.footer.copy}</p>
+		</footer>
+
+		<script>
+			import '../scripts/landing';
+		</script>
+	</body>
+</html>

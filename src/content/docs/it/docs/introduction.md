@@ -31,6 +31,6 @@ Vitrine 1 disegnava i temi con WebView2, un motore Chromium completo. Vitrine 2 
 
 ## I widget sono pacchetti
 
-Un widget è un file `.vwidget`: un manifest, un bundle JavaScript scritto con `@vitrine/sdk` (JSX e
+Un widget è un file `.vitrine`: un manifest, un bundle JavaScript scritto con `@vitrine/sdk` (JSX e
 SolidJS), risorse come font e immagini e uno schema di impostazioni facoltativo. Ogni widget dichiara i
 permessi di cui ha bisogno, per esempio le metriche della CPU o un host specifico per il meteo.

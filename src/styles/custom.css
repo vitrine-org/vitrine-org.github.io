@@ -1,20 +1,253 @@
-/* Vitrine palette, taken from the app icon. */
+/*
+ * Docs theme: the same tokens as the landing page (tokens.css, loaded before this file).
+ * Soft black page in dark mode, off-white in light, glass header shared with the landing page.
+ */
 
-/* Dark mode (Starlight default) */
+/* Dark (Starlight default) */
 :root {
-	--sl-color-accent-low: #1c1f4d;
-	--sl-color-accent: #6a7bff;
-	--sl-color-accent-high: #c9cfff;
+	--sl-color-white: #f2f2f2;
+	--sl-color-gray-1: #ebebeb;
+	--sl-color-gray-2: #c2c2c2;
+	--sl-color-gray-3: #8f8f8f;
+	--sl-color-gray-4: #5c5c5c;
+	--sl-color-gray-5: #333333;
+	--sl-color-gray-6: #1f1f1f;
+	--sl-color-black: #161616;
+	--sl-color-accent-low: #0f1d5c;
+	--sl-color-accent: #6ea8ff;
+	--sl-color-accent-high: #c9dcff;
+	--sl-color-text-accent: #6ea8ff;
+	--sl-color-bg-nav: rgb(30 30 30 / 0.66);
+	--sl-color-bg-sidebar: #161616;
+	--sl-color-hairline: rgb(255 255 255 / 0.11);
+	--sl-color-hairline-light: rgb(255 255 255 / 0.11);
+	--sl-color-hairline-shade: rgb(255 255 255 / 0.11);
 }
 
-/* Light mode */
+/* Light */
 :root[data-theme='light'] {
-	--sl-color-accent-low: #dfe3ff;
-	--sl-color-accent: #3d5afe;
-	--sl-color-accent-high: #1a237e;
+	--sl-color-white: #141414;
+	--sl-color-gray-1: #1f1f1f;
+	--sl-color-gray-2: #3d3d3d;
+	--sl-color-gray-3: #6b6b6b;
+	--sl-color-gray-4: #8f8f8f;
+	--sl-color-gray-5: #d4d4d3;
+	--sl-color-gray-6: #e9e9e8;
+	--sl-color-gray-7: #efefee;
+	--sl-color-black: #f4f4f3;
+	--sl-color-accent-low: #e3e9ff;
+	--sl-color-accent: #2b4de0;
+	--sl-color-accent-high: #142a99;
+	--sl-color-text-accent: #2b4de0;
+	--sl-color-bg-nav: rgb(255 255 255 / 0.7);
+	--sl-color-bg-sidebar: #f4f4f3;
+	--sl-color-hairline: rgb(0 0 0 / 0.09);
+	--sl-color-hairline-light: rgb(0 0 0 / 0.09);
+	--sl-color-hairline-shade: rgb(0 0 0 / 0.09);
 }
 
-.hero img {
-	border-radius: 1rem;
-	box-shadow: 0 24px 64px -24px rgb(61 90 254 / 0.45);
+/* Type: the same scale as the site. */
+:root {
+	--sl-font: var(--font);
+	--sl-font-mono: var(--mono);
+	--sl-text-2xs: var(--fs-12);
+	--sl-text-xs: var(--fs-14);
+	--sl-text-sm: var(--fs-14);
+	--sl-text-base: var(--fs-16);
+	--sl-text-lg: var(--fs-18);
+	--sl-text-xl: var(--fs-21);
+	--sl-text-2xl: var(--fs-24);
+	--sl-text-3xl: var(--fs-24);
+	--sl-text-4xl: var(--fs-36);
+	--sl-text-5xl: var(--fs-48);
+	--sl-text-6xl: var(--fs-60);
+	--sl-text-body: var(--fs-16);
+	--sl-text-body-sm: var(--fs-14);
+	--sl-text-code: var(--fs-14);
+	--sl-text-code-sm: var(--fs-12);
+	--sl-text-h1: var(--fs-36);
+	--sl-text-h2: var(--fs-24);
+	--sl-text-h3: var(--fs-21);
+	--sl-text-h4: var(--fs-18);
+	--sl-text-h5: var(--fs-16);
+	--sl-line-height: var(--lh-body);
+	--sl-line-height-headings: var(--lh-heading);
+	--sl-nav-pad-x: var(--grid-margin);
+	--sl-content-pad-x: var(--grid-margin);
+}
+
+@media (min-width: 50em) {
+	:root {
+		--sl-text-h1: var(--fs-48);
+		--sl-text-h2: var(--fs-36);
+		--sl-text-h3: var(--fs-24);
+		--sl-text-h4: var(--fs-21);
+		--sl-text-h5: var(--fs-18);
+	}
+}
+
+h1,
+h2,
+h3,
+.sl-markdown-content :is(h1, h2, h3, h4, h5) {
+	font-weight: var(--fw-semibold);
+	letter-spacing: var(--track-heading);
+}
+
+h1#_top {
+	font-weight: var(--fw-bold);
+	letter-spacing: var(--track-display);
+	line-height: var(--lh-display);
+}
+
+/* Header: Starlight's fixed header becomes a transparent frame around the shared floating bar. */
+:root {
+	--sl-nav-height: 5rem;
+	--sl-menu-button-size: 2.5rem;
+}
+
+@media (min-width: 50rem) {
+	:root {
+		--sl-nav-height: 5rem;
+	}
+}
+
+header.header,
+:root[data-has-sidebar] header.header {
+	top: var(--sp-3);
+	inset-inline: var(--grid-margin);
+	width: auto;
+	height: 3.5rem;
+	padding: 0;
+	border: 0;
+	background: transparent;
+}
+
+.sl-menu-button {
+	top: calc(var(--sp-3) + 0.5rem);
+	inset-inline-end: calc(var(--grid-margin) + var(--sp-2));
+	border-radius: var(--radius-s);
+	background: transparent;
+	color: var(--text-2);
+	box-shadow: none;
+}
+
+:root[data-theme='light'] .sl-menu-button,
+:root[data-theme='dark'] .sl-menu-button {
+	background: transparent;
+	color: var(--text-2);
+}
+
+.sl-menu-button {
+	align-items: center;
+	justify-content: center;
+}
+
+.sl-menu-button:has(~ :popover-open),
+:root[data-theme] .sl-menu-button:has(~ :popover-open) {
+	background: var(--line);
+	color: var(--text-1);
+}
+
+.sl-menu-button:hover {
+	background: var(--line);
+	color: var(--text-1);
+}
+
+/* Search button inside the bar, as a glass field. */
+.bar-search site-search {
+	width: 100%;
+	max-width: 22rem;
+}
+
+.bar-search button[data-open-modal] {
+	height: 2.5rem;
+	border: 1px solid var(--glass-edge);
+	border-radius: var(--radius-m);
+	background: var(--glass);
+	color: var(--text-3);
+	font-size: var(--fs-14);
+}
+
+.bar-search button[data-open-modal]:hover {
+	border-color: var(--line-strong);
+	color: var(--text-2);
+}
+
+@media (max-width: 49.99rem) {
+	.bar-search site-search {
+		width: auto;
+	}
+
+	.bar-search button[data-open-modal] {
+		width: 2.5rem;
+		border: 0;
+		background: transparent;
+		color: var(--text-2);
+	}
+}
+
+/* No hairlines across the content: spacing separates the title from the text. */
+.content-panel + .content-panel {
+	border-top: 0;
+}
+
+.sidebar-pane {
+	border-inline-end: 0 !important;
+}
+
+/* Links and content. */
+.sl-markdown-content a {
+	color: var(--link);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 4px;
+}
+
+.sl-markdown-content a:hover {
+	color: var(--link-hover);
+}
+
+.sl-markdown-content code:not(pre code) {
+	padding: 0.125em 0.375em;
+	border-radius: 6px;
+	border: 1px solid var(--line);
+	background: var(--glass);
+}
+
+/* Asides as glass panels with the accent on the left. */
+.starlight-aside {
+	border: 1px solid var(--glass-edge);
+	border-inline-start: 3px solid var(--sl-color-asides-border);
+	border-radius: var(--radius-m);
+	background: var(--glass);
+	box-shadow: inset 0 1px 0 var(--glass-hl);
+}
+
+.starlight-aside--note {
+	--sl-color-asides-border: var(--blue);
+}
+
+/* Sidebar: current page as a soft glass pill. */
+.sidebar-content a[aria-current='page'] {
+	color: var(--sl-color-white);
+	background: var(--glass);
+	border: 1px solid var(--glass-edge);
+	border-radius: var(--radius-s);
+	font-weight: var(--fw-semibold);
+}
+
+.sidebar-content a {
+	border-radius: var(--radius-s);
+}
+
+/* Pagination links. */
+.pagination-links a {
+	border-radius: var(--radius-l);
+	border-color: var(--glass-edge);
+	background: var(--glass);
+	box-shadow: inset 0 1px 0 var(--glass-hl), var(--glass-shadow);
+}
+
+:focus-visible {
+	outline-color: var(--focus);
 }

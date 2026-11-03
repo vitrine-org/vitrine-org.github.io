@@ -1,0 +1,147 @@
+/* The shared top bar (landing page and docs). Uses tokens.css. */
+
+.site-header {
+	position: sticky;
+	top: var(--sp-3);
+	z-index: 10;
+	/* Full width minus the grid margins: the same frame as the docs header. */
+	width: calc(100% - 2 * var(--grid-margin));
+	margin: var(--sp-3) auto 0;
+}
+
+.bar {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: var(--sp-4);
+	height: 3.5rem;
+	padding: 0 var(--sp-2) 0 var(--sp-4);
+	border-radius: var(--radius-l);
+	background: var(--bar-bg);
+	border: 1px solid var(--glass-edge);
+	box-shadow: inset 0 1px 0 var(--glass-hl), var(--glass-shadow);
+	-webkit-backdrop-filter: blur(22px) saturate(1.5);
+	backdrop-filter: blur(22px) saturate(1.5);
+	font-family: var(--font);
+}
+
+.bar .icon {
+	flex: none;
+	stroke-width: 1.75;
+}
+
+.bar .brand {
+	display: inline-flex;
+	flex: none;
+	align-items: center;
+	gap: var(--sp-3);
+	font-size: var(--fs-18);
+	font-weight: var(--fw-semibold);
+	line-height: var(--lh-ui);
+	letter-spacing: -0.01em;
+	color: var(--text-1);
+	text-decoration: none;
+}
+
+.bar .brand img {
+	display: block;
+}
+
+.bar-search {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	min-width: 0;
+}
+
+.bar-nav {
+	display: flex;
+	flex: none;
+	align-items: center;
+	gap: var(--sp-1);
+}
+
+.bar-nav a,
+.theme-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--sp-2);
+	height: 2.5rem;
+	padding: 0 var(--sp-3);
+	border: 0;
+	border-radius: var(--radius-s);
+	background: none;
+	font: inherit;
+	font-size: var(--fs-16);
+	line-height: var(--lh-ui);
+	color: var(--text-2);
+	text-decoration: none;
+	cursor: pointer;
+	transition: color 0.2s, background-color 0.2s;
+}
+
+.bar-nav a:hover,
+.theme-toggle:hover {
+	color: var(--text-1);
+	background: var(--line);
+}
+
+.bar-nav a[aria-current='page'] {
+	color: var(--text-1);
+	font-weight: var(--fw-semibold);
+}
+
+.bar-nav a:focus-visible,
+.theme-toggle:focus-visible,
+.bar .brand:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+
+.theme-toggle {
+	justify-content: center;
+	width: 2.5rem;
+	padding: 0;
+}
+
+.tt {
+	display: none;
+}
+
+:root:not([data-theme-pref]) .tt-auto,
+:root[data-theme-pref='auto'] .tt-auto,
+:root[data-theme-pref='light'] .tt-light,
+:root[data-theme-pref='dark'] .tt-dark {
+	display: inline-flex;
+}
+
+/* Docs on narrow screens: Starlight's menu holds these links, and its button sits in the bar. */
+@media (max-width: 49.99rem) {
+	.bar.in-docs .bar-nav {
+		display: none;
+	}
+
+	.bar.in-docs {
+		padding-inline-end: calc(var(--sp-2) + 2.5rem + var(--sp-2));
+	}
+
+	.bar.in-docs .bar-search {
+		justify-content: flex-end;
+	}
+}
+
+@media (max-width: 559px) {
+	.bar {
+		gap: var(--sp-2);
+		padding-inline-start: var(--sp-3);
+	}
+
+	.bar-nav a {
+		padding: 0 var(--sp-2);
+		font-size: var(--fs-14);
+	}
+
+	.bar-nav .hide-narrow {
+		display: none;
+	}
+}

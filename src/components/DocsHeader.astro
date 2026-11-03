@@ -1,0 +1,13 @@
+---
+// Starlight Header override: the same bar as the landing page, with Starlight's search inside.
+import Search from '@astrojs/starlight/components/Search.astro';
+import SiteBar from './SiteBar.astro';
+
+const lang = Astro.locals.starlightRoute.locale === 'it' ? 'it' : 'en';
+const path = Astro.url.pathname;
+const otherHref = lang === 'it' ? path.replace(/^\/it(?=\/|$)/, '') || '/' : `/it${path}`;
+---
+
+<SiteBar lang={lang} otherHref={otherHref} inDocs>
+	<Search slot="search" />
+</SiteBar>
