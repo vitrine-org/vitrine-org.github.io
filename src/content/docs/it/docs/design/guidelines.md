@@ -59,6 +59,10 @@ l'altra e un margine di 24 DIP dai bordi dell'area di lavoro. Un widget di *n* �
   una soglia di dimensione: chi ingrandisce un widget si aspetta lo stesso widget, più grande. Se un
   layout più grande mostra di più (previsioni, un mese), dagli una forma sua ed elencala in
   [`variants`](/it/docs/reference/manifest/#variants), oppure rendilo un widget a parte.
+- **Resta fluido e leggibile.** Dentro una forma i riquadri variano comunque (2 × 3 e 4 × 5 sono
+  entrambi alti): lascia che righe, barre, filetti e spaziature occupino lo spazio disponibile con il
+  flex invece di centrare una copia rimpicciolita, e limita `scale` in modo che il testo non scenda
+  mai sotto gli 11 DIP.
 
 ## Leggibile su qualunque sfondo
 

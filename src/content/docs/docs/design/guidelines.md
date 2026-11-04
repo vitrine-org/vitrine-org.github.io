@@ -56,6 +56,9 @@ edges of the work area. A widget of *n* × *m* cells measures `n × 64 + (n − 
   threshold: a user who enlarges a widget expects the same widget, larger. If a larger layout shows
   more (a forecast, a month), give it its own shape and list it in
   [`variants`](/docs/reference/manifest/#variants), or make it a separate widget.
+- **Stay fluid and legible.** Within a shape the boxes still vary (2 × 3 and 4 × 5 are both tall):
+  let rows, bars, rules and gaps take the available space with flex rather than letterboxing a
+  shrunken copy, and clamp `scale` so text never drops below 11 DIPs.
 
 ## Be legible on any wallpaper
 
