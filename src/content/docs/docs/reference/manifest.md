@@ -51,7 +51,7 @@ fails validation is not loaded and the reason is written to the log.
 | `author` | string | no | Default `""`. |
 | `description` | string | no | Default `""`. |
 | `homepage` | string | no | Not validated. |
-| `minEngine` | string | no | Must be a semantic version. Engine 2.0 validates the format but does not compare it with its own version. |
+| `minEngine` | string | no | Semantic version of the oldest Vitrine that can run the pack. Older engines refuse to install or load it, with a message that asks to update Vitrine. |
 | `fonts` | string[] | no | [Safe paths](#paths) to TTF or OTF files. Each must exist. Fonts are registered for every widget in the pack; see [Fonts and assets](/docs/guides/fonts-and-assets/). |
 | `widgets` | object[] | yes | At least one widget. |
 | `locales` | object | no | Localised names and descriptions; see [Localised texts](#localised-texts). |

@@ -9,7 +9,7 @@ sidebar:
 return Solid accessors (`() => T`), and any Solid primitive (`createSignal`, `createMemo`,
 `createResource`, `Show`, `For`, …) works inside a widget.
 
-This page documents **v2.2.0** (`github:vitrine-org/sdk#v2.2.0`). APIs marked **since 2.2.0** are
+This page documents **v2.2.0** (`github:vitrine-org/sdk#v2.2.1`). APIs marked **since 2.2.0** are
 not available in earlier versions.
 
 | Import | Contents |

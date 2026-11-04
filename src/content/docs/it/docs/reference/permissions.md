@@ -22,6 +22,7 @@ storage, dati locali, [`prompt()`](/it/docs/reference/sdk/#prompt) e
 | `system.drives` | Unità | `drives`: lettera, etichetta, spazio totale, libero e usato di ogni unità. |
 | `system.processes` | Processi in esecuzione | `processes`: nome, id e memoria dei dieci processi che usano più memoria. |
 | `system.network` | Attività di rete | `network`: byte ricevuti e inviati al secondo. |
+| `system.info` | Dettagli del computer | `system`: nome host, versione di Windows, tempo di attività. |
 | `net:<host>` | Accesso di rete a *host* | `fetch()` verso `http://<host>` e `https://<host>`, con qualsiasi porta e percorso. |
 
 ## system.\*
@@ -30,18 +31,19 @@ Ogni permesso `system.<metrica>` sblocca una chiave di
 [`useSystem`](/it/docs/reference/sdk/#usesystem). Le metriche richieste senza permesso vengono
 scartate e registrate con un avviso; le altre continuano ad arrivare.
 
-L'SDK tipizza anche una metrica `system` (nome host, sistema operativo, tempo di attività), ma il
-motore 2.0 non ha una stringa di permesso per essa (`system.system` viene rifiutata), quindi non può
-essere concessa.
+La metrica `system` (nome host, sistema operativo, tempo di attività) si concede con `system.info`.
 
 ## net:\<host\>
 
 - `<host>` è un nome host: etichette di lettere, cifre e `-` separate da punti, al massimo 253
   caratteri. Viene salvato in minuscolo.
 - Corrisponde esattamente all'host della richiesta. I sottodomini non sono inclusi: `net:example.com`
-  non consente `api.example.com`; dichiara ogni host.
-- Niente schema, porta, percorso o caratteri jolly: `net:https://x.com`, `net:x.com:8080`,
-  `net:x.com/api` e `net:*.x.com` non sono validi.
+  non consente `api.example.com`.
+- `net:*.example.com` consente tutti i sottodomini (`api.example.com`, `a.b.example.com`) ma non
+  `example.com`: se servono entrambi, dichiarali entrambi. È accettato solo un `*.` iniziale;
+  `*.com`, `a.*.com` e `*a.com` non sono validi.
+- Niente schema, porta o percorso: `net:https://x.com`, `net:x.com:8080` e `net:x.com/api` non sono
+  validi.
 - Si possono richiedere solo URL `http://` e `https://`. Credenziali nell'URL (`utente@host`) e porta
   vengono ignorate nel confronto.
 

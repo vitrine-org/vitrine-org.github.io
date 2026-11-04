@@ -20,7 +20,9 @@ locale data, [`prompt()`](/docs/reference/sdk/#prompt) and [`openUrl()`](/docs/r
 | `system.drives` | Drives | `drives`: letter, label, total, free and used space of each drive. |
 | `system.processes` | Running processes | `processes`: name, process id and memory of the ten processes using the most memory. |
 | `system.network` | Network activity | `network`: bytes received and sent per second. |
+| `system.info` | Computer details | `system`: host name, Windows version, uptime. |
 | `net:<host>` | Network access to *host* | `fetch()` to `http://<host>` and `https://<host>`, any port and path. |
+| `net:*.<domain>` | Network access to every subdomain of *domain* | Any host ending in `.<domain>` (not *domain* itself). |
 
 ## system.\*
 
@@ -28,17 +30,18 @@ Each `system.<metric>` permission unlocks one key of [`useSystem`](/docs/referen
 Metrics requested without their permission are dropped and a warning is logged; the others are still
 delivered.
 
-The SDK also types a `system` metric (hostname, OS, uptime), but engine 2.0 has no permission string
-for it (`system.system` is rejected), so it cannot be granted.
+The `system` metric (host name, OS, uptime) is granted by `system.info`.
 
 ## net:\<host\>
 
 - `<host>` is a host name: labels of letters, digits and `-`, separated by dots, at most 253
   characters. It is stored in lower case.
 - It matches the request's host exactly. Subdomains are not included: `net:example.com` does not
-  allow `api.example.com`; declare each host.
-- No scheme, port, path or wildcard: `net:https://x.com`, `net:x.com:8080`, `net:x.com/api` and
-  `net:*.x.com` are all invalid.
+  allow `api.example.com`.
+- `net:*.example.com` allows every subdomain (`api.example.com`, `a.b.example.com`) but not
+  `example.com` itself: declare both if you need both. Only a leading `*.` is accepted; `*.com`,
+  `a.*.com` and `*a.com` are invalid.
+- No scheme, port or path: `net:https://x.com`, `net:x.com:8080` and `net:x.com/api` are invalid.
 - Only `http://` and `https://` URLs can be fetched. Credentials in the URL (`user@host`) and the
   port are ignored when matching.
 

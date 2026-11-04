@@ -51,7 +51,7 @@ viene caricato e il motivo finisce nel log.
 | `author` | string | no | Predefinito `""`. |
 | `description` | string | no | Predefinito `""`. |
 | `homepage` | string | no | Non validato. |
-| `minEngine` | string | no | Deve essere una versione semantica. Il motore 2.0 ne controlla il formato ma non lo confronta con la propria versione. |
+| `minEngine` | string | no | Versione semantica del Vitrine più vecchio in grado di eseguire il pacchetto. I motori più vecchi si rifiutano di installarlo o caricarlo, con un messaggio che invita ad aggiornare Vitrine. |
 | `fonts` | string[] | no | [Percorsi sicuri](#percorsi) a file TTF o OTF, che devono esistere. I font vengono registrati per tutti i widget del pack; vedi [Font e risorse](/it/docs/guides/fonts-and-assets/). |
 | `widgets` | object[] | sì | Almeno un widget. |
 | `locales` | object | no | Nomi e descrizioni localizzati; vedi [Testi localizzati](#testi-localizzati). |

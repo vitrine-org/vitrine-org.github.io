@@ -21,7 +21,7 @@ Vitrine segue la lingua di visualizzazione di Windows, a meno che l'utente non n
 pannello di controllo (**Generale → Lingua**). Quando la lingua cambia, i widget si riavviano.
 
 :::note
-La localizzazione richiede `@vitrine/sdk` 2.2.0 (`github:vitrine-org/sdk#v2.2.0`) e una versione di
+La localizzazione richiede `@vitrine/sdk` 2.2.0 (`github:vitrine-org/sdk#v2.2.1`) e una versione di
 Vitrine che la supporti. Le versioni precedenti di Vitrine ignorano tutti i campi descritti in questa
 pagina e su di esse `useLanguage()` restituisce `"en"`: un pack localizzato funziona comunque, in
 inglese.

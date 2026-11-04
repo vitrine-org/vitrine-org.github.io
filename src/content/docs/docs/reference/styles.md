@@ -212,8 +212,10 @@ rejects them; an inline string style (`style="text-decoration: underline"`) is a
 - `<property>` is a style key in camelCase or kebab-case (`width`, `stroke-dasharray`) or `all`.
 - The first duration is the length, the second the delay.
 - Easing: `linear`, `ease` (default), `ease-in`, `ease-out`, `ease-in-out`, `cubic-bezier(x1, y1, x2, y2)`.
-- **Only numeric values animate**: numbers, `px` lengths and number lists (such as
-  `strokeDasharray`). Colours, percentages, gradients and `transform` strings change instantly.
+- **What animates**: numbers, `px` lengths, number lists (such as `strokeDasharray`) and
+  `transform`. Transforms follow CSS: matching function lists interpolate function by function,
+  `none` counts as the identity, and different lists are interpolated through their matrices.
+  Colours, percentages and gradients change instantly.
 - A transition starts when a new style object is applied that contains both `transition` and a
   changed value. The value must already be numeric before the change: a property that appears for
   the first time does not animate.
@@ -260,7 +262,7 @@ mount(() => <view style="padding: 12px; border-radius: 12px; background: rgba(0,
   to all descendants, including those that do not inherit in CSS.
 - **Units** are DIPs, `px` and `%` only.
 - **`border` is paint-only** and uniform; **`boxShadow`** has one approximate shadow, no spread or inset.
-- **Transitions animate numeric values only**; there are no keyframe animations.
+- **Transitions animate numbers, lengths and transforms only**; there are no keyframe animations.
 - **`transform`** has a fixed centre origin and does not affect layout.
 - **`backdropFilter`** blurs the wallpaper only.
 - **No `Intl`.** QuickJS has no `Intl`, so `toLocaleString` and `Intl.DateTimeFormat` are not

@@ -27,13 +27,13 @@ Senza comando stampa l'uso; con un comando sconosciuto lo stampa ed esce con cod
 ### create
 
 ```sh
-npx github:vitrine-org/sdk#v2.2.0 create my-widgets --id=dev.you.widgets
+npx github:vitrine-org/sdk#v2.2.1 create my-widgets --id=dev.you.widgets
 cd my-widgets && npm install
 ```
 
 Copia il template (un widget orologio con schema delle impostazioni) in `<folder>`, che deve essere
 vuota o non esistere. `--id` imposta l'id del pack; il predefinito è `dev.example.<nome cartella>`. Il
-`package.json` generato dipende da `github:vitrine-org/sdk#v2.2.0` e definisce gli script `build`,
+`package.json` generato dipende da `github:vitrine-org/sdk#v2.2.1` e definisce gli script `build`,
 `pack` e `dev`.
 
 ### build

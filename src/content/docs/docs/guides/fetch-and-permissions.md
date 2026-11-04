@@ -15,7 +15,8 @@ in `vitrine.json`:
 | Permission | Grants |
 |---|---|
 | `net:<host>` | `fetch` to that exact host, over `http` or `https`, on any port |
-| `system.cpu`, `system.memory`, `system.battery`, `system.drives`, `system.processes`, `system.network` | The metric through [`useSystem`](/docs/guides/system-metrics/) |
+| `net:*.<domain>` | `fetch` to any subdomain of *domain* (not *domain* itself) |
+| `system.cpu`, `system.memory`, `system.battery`, `system.drives`, `system.processes`, `system.network`, `system.info` | The metric through [`useSystem`](/docs/guides/system-metrics/) |
 
 Hosts match exactly and case-insensitively. Wildcards are not accepted: declare `api.example.com` and
 `cdn.example.com` separately. An unknown or malformed permission makes the manifest invalid, and

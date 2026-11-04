@@ -218,8 +218,10 @@ le rifiuta; uno stile come stringa in linea (`style="text-decoration: underline"
 - La prima durata è la lunghezza dell'animazione, la seconda il ritardo.
 - Easing: `linear`, `ease` (predefinito), `ease-in`, `ease-out`, `ease-in-out`,
   `cubic-bezier(x1, y1, x2, y2)`.
-- **Si animano solo valori numerici**: numeri, lunghezze in `px` e liste di numeri (come
-  `strokeDasharray`). Colori, percentuali, gradienti e stringhe di `transform` cambiano di colpo.
+- **Cosa si anima**: numeri, lunghezze in `px`, liste di numeri (come `strokeDasharray`) e
+  `transform`. Le trasformazioni seguono il CSS: liste con le stesse funzioni si interpolano funzione
+  per funzione, `none` vale come identità e liste diverse si interpolano tramite le matrici.
+  Colori, percentuali e gradienti cambiano di colpo.
 - Una transizione parte quando viene applicato un nuovo oggetto di stile che contiene sia
   `transition` sia un valore cambiato. Il valore deve essere già numerico prima del cambio: una
   proprietà che compare per la prima volta non si anima.
@@ -270,7 +272,7 @@ mount(() => <view style="padding: 12px; border-radius: 12px; background: rgba(0,
 - **Le unità** sono solo DIP, `px` e `%`.
 - **`border` è solo grafico** e uniforme; **`boxShadow`** ha un'unica ombra approssimata, senza
   spread né inset.
-- **Le transizioni animano solo valori numerici**; non esistono animazioni a keyframe.
+- **Le transizioni animano solo numeri, lunghezze e trasformazioni**; non esistono animazioni a keyframe.
 - **`transform`** ha l'origine fissa al centro e non influisce sul layout.
 - **`backdropFilter`** sfoca solo lo sfondo del desktop.
 - **Niente `Intl`.** QuickJS non ha `Intl`, quindi `toLocaleString` e `Intl.DateTimeFormat` non danno

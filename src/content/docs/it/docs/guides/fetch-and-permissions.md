@@ -15,7 +15,8 @@ nella sua voce in `vitrine.json`:
 | Permesso | Concede |
 |---|---|
 | `net:<host>` | `fetch` verso quell'host esatto, in `http` o `https`, su qualsiasi porta |
-| `system.cpu`, `system.memory`, `system.battery`, `system.drives`, `system.processes`, `system.network` | La metrica tramite [`useSystem`](/it/docs/guides/system-metrics/) |
+| `net:*.<dominio>` | `fetch` verso qualsiasi sottodominio di *dominio* (non *dominio* stesso) |
+| `system.cpu`, `system.memory`, `system.battery`, `system.drives`, `system.processes`, `system.network`, `system.info` | La metrica tramite [`useSystem`](/it/docs/guides/system-metrics/) |
 
 Gli host devono corrispondere esattamente, senza distinzione tra maiuscole e minuscole. I caratteri
 jolly non sono ammessi: dichiara `api.example.com` e `cdn.example.com` separatamente. Un permesso

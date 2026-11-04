@@ -9,7 +9,7 @@ sidebar:
 SolidJS: gli hook restituiscono accessor di Solid (`() => T`) e dentro un widget funziona qualsiasi
 primitiva di Solid (`createSignal`, `createMemo`, `createResource`, `Show`, `For`, …).
 
-Questa pagina documenta la **v2.2.0** (`github:vitrine-org/sdk#v2.2.0`). Le API segnate **da 2.2.0**
+Questa pagina documenta la **v2.2.0** (`github:vitrine-org/sdk#v2.2.1`). Le API segnate **da 2.2.0**
 non esistono nelle versioni precedenti.
 
 | Import | Contenuto |
