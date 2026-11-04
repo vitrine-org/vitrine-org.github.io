@@ -5,9 +5,12 @@ import SiteBar from './SiteBar.astro';
 
 const lang = Astro.locals.starlightRoute.locale === 'it' ? 'it' : 'en';
 const path = Astro.url.pathname;
-const otherHref = lang === 'it' ? path.replace(/^\/it(?=\/|$)/, '') || '/' : `/it${path}`;
+const notFound = Astro.locals.starlightRoute.entry.slug === '404' || /404/.test(path);
+const otherHref = notFound
+	? lang === 'it' ? '/' : '/it/'
+	: lang === 'it' ? path.replace(/^\/it(?=\/|$)/, '') || '/' : `/it${path}`;
 ---
 
-<SiteBar lang={lang} otherHref={otherHref} inDocs>
+<SiteBar lang={lang} otherHref={otherHref} current="docs">
 	<Search slot="search" />
 </SiteBar>

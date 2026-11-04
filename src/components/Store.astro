@@ -1,0 +1,138 @@
+---
+// The store page. The catalogue is fetched in the browser, so new releases show up without a rebuild.
+import '@fontsource-variable/schibsted-grotesk';
+import '../styles/landing.css';
+import '../styles/store.css';
+import Icon from './Icon.astro';
+import SiteBar from './SiteBar.astro';
+import SiteFooter from './SiteFooter.astro';
+import { strings, type Lang } from '../i18n/landing';
+import { storeStrings } from '../i18n/store';
+
+interface Props {
+	lang: Lang;
+}
+
+const lang = Astro.props.lang;
+const t = strings[lang];
+const s = storeStrings[lang];
+const other = lang === 'en' ? '/it/packs/' : '/packs/';
+const readme = 'https://github.com/vitrine-org/store#add-your-pack';
+// Text the script needs, as data (functions are rebuilt client-side from these templates).
+const text = {
+	lang,
+	locale: t.locale,
+	official: s.official,
+	by: s.by,
+	none: s.none,
+	error: s.error,
+	offline: s.offline,
+	retry: s.retry,
+	all: s.all,
+	close: s.close,
+	version: s.version,
+	size: s.size,
+	licence: s.licence,
+	published: s.published,
+	repo: s.repo,
+	download: s.download,
+	install: s.install,
+	needs: s.needs,
+	permissions: s.permissions,
+	noPermissions: s.noPermissions,
+	widgetsHeading: s.widgetsHeading,
+	interactive: s.interactive,
+	updated: s.updated,
+	count: [s.count(1), s.count(2).replace('2', '{n}')],
+	widgets: [s.widgets(1), s.widgets(2).replace('2', '{n}')],
+	cells: s.cells(8, 9).replace('8', '{w}').replace('9', '{h}'),
+	open: s.open('{name}'),
+	preview: s.preview('{name}'),
+	perm: Object.fromEntries(Object.entries(s.perm).map(([k, v]) => [k, typeof v === 'function' ? v('{host}') : v])),
+};
+---
+
+<!doctype html>
+<html lang={t.htmlLang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{s.title}</title>
+		<meta name="description" content={s.description} />
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="theme-color" content="#f4f4f3" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)" />
+		<link rel="alternate" hreflang="en" href="https://vitrine-org.github.io/packs/" />
+		<link rel="alternate" hreflang="it" href="https://vitrine-org.github.io/it/packs/" />
+		<link rel="preconnect" href="https://vitrine-org.github.io" />
+		<meta property="og:title" content={s.title} />
+		<meta property="og:description" content={s.description} />
+		<script is:inline>
+			try {
+				const s = localStorage.getItem('starlight-theme');
+				if (s === 'light' || s === 'dark') document.documentElement.dataset.theme = s;
+			} catch {}
+		</script>
+	</head>
+	<body>
+		<header class="site-header">
+			<SiteBar lang={lang} current="store" otherHref={other} />
+		</header>
+
+		<main class="store container">
+			<section class="store-head">
+				<p class="eyebrow">{s.eyebrow}</p>
+				<h1>{s.h1}</h1>
+				<p class="store-lead">{s.lead}</p>
+			</section>
+
+			<div class="store-tools" role="search">
+				<label class="search glass">
+					<Icon name="search" />
+					<span class="sr-only">{s.search}</span>
+					<input type="search" placeholder={s.search} autocomplete="off" spellcheck="false" data-search />
+				</label>
+				<div class="tags" role="group" aria-label={s.tags} data-tags></div>
+			</div>
+			<p class="store-count" aria-live="polite" data-count></p>
+
+			<div class="packs" data-packs aria-busy="true">
+				{[0, 1, 2, 3].map(() => (
+					<div class="pack skeleton" aria-hidden="true">
+						<div class="mosaic"></div>
+						<div class="pack-body"><i></i><i></i><i></i></div>
+					</div>
+				))}
+				<p class="sr-only">{s.loading}</p>
+			</div>
+			<div class="store-state" data-state hidden></div>
+
+			<section class="publish glass">
+				<div>
+					<h2>{s.publish.h}</h2>
+					<p>{s.publish.p}</p>
+				</div>
+				<div class="publish-links">
+					<a class="button primary" href={readme}><Icon name="upload" />{s.publish.cta}</a>
+					<a class="text-link" href={`${t.base}docs/publishing/`}><Icon name="book-2" />{s.publish.guide}</a>
+				</div>
+			</section>
+			<p class="store-updated" data-updated></p>
+		</main>
+
+		<dialog class="pack-dialog" aria-labelledby="pack-title" data-dialog>
+			<div class="dialog-inner" data-detail></div>
+		</dialog>
+
+		<SiteFooter lang={lang} enHref="/packs/" itHref="/it/packs/" />
+
+		<script type="application/json" id="store-text" set:html={JSON.stringify(text)} />
+		<script>
+			import '../scripts/store';
+		</script>
+		<noscript><style>.packs { display: none; }</style></noscript>
+	</body>
+</html>

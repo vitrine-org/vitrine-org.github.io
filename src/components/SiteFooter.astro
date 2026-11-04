@@ -1,0 +1,43 @@
+---
+// Footer shared by the landing page and the store page.
+import icon from '../assets/vitrine.svg';
+import Icon from './Icon.astro';
+import { strings, type Lang } from '../i18n/landing';
+
+interface Props {
+	lang: Lang;
+	/** Language links; default to the two home pages. */
+	enHref?: string;
+	itHref?: string;
+}
+
+const { lang, enHref = '/', itHref = '/it/' } = Astro.props;
+const t = strings[lang];
+const docs = `${t.base}docs/`;
+const year = new Date().getFullYear();
+---
+
+<footer class="foot container">
+	<div class="foot-top grid">
+		<div class="foot-about">
+			<a class="brand" href={t.base}>
+				<img src={icon.src} alt="" width="28" height="28" />
+				<span>Vitrine</span>
+			</a>
+			<p>{t.footer.about}</p>
+		</div>
+		<div class="foot-col">
+			<h3>{t.footer.project}</h3>
+			<a href={`${docs}introduction/`}><Icon name="book-2" size={16} />{t.footer.docs}</a>
+			<a href={`${t.base}packs/`}><Icon name="building-store" size={16} />{t.footer.store}</a>
+			<a href={`${docs}roadmap/`}><Icon name="route" size={16} />{t.nav.roadmap}</a>
+			<a href="https://github.com/vitrine-org/vitrine"><Icon name="brand-github" size={16} />GitHub</a>
+		</div>
+		<div class="foot-col">
+			<h3>{t.footer.language}</h3>
+			<a href={enHref} hreflang="en">English</a>
+			<a href={itHref} hreflang="it">Italiano</a>
+		</div>
+	</div>
+	<p class="copy">© {year} {t.footer.copy}</p>
+</footer>

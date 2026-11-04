@@ -141,7 +141,17 @@
 		font-size: var(--fs-14);
 	}
 
-	.bar-nav .hide-narrow {
+	.bar-nav .hide-narrow,
+	.bar-nav .lang-label {
 		display: none;
+	}
+
+	.bar-nav .icon {
+		display: none;
+	}
+
+	.bar-nav .bar-lang .icon,
+	.theme-toggle .icon {
+		display: inline-flex;
 	}
 }

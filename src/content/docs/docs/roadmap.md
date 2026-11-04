@@ -1,16 +1,25 @@
 ---
 title: Roadmap
-description: The milestones that lead to the first release of Vitrine 2.
+description: What Vitrine 2 already does, and what is being built next.
 ---
 
-| # | Milestone | Status |
-|---|---|---|
-| 0 | Repository, CI, icon, website | In progress |
-| 1 | Desktop embedding prototype beneath the icons | Planned |
-| 2 | Renderer: layout, text, shapes, transitions | Planned |
-| 3 | Script runtime and `@vitrine/sdk` | Planned |
-| 4 | Widget packages, grid and edit mode | Planned |
-| 5 | System metrics and power management | Planned |
-| 6 | Interactive widgets beneath the icons | Planned |
-| 7 | Control panel | Planned |
-| 8 | Built-in widgets, installer, first release | Planned |
+Vitrine 2 is a ground-up rewrite of Vitrine 1. The engine is feature complete for its first release;
+this page tracks where each part stands.
+
+| Milestone | Status |
+| --- | --- |
+| Desktop embedding beneath the icons, on Windows 10 and 11 (including 24H2 and later) | Done |
+| Renderer: layout, text, SVG, gradients, shadows, transitions | Done |
+| Frosted glass (`backdropFilter`) and text decoration | Done |
+| Script runtime and [`@vitrine/sdk`](https://github.com/vitrine-org/sdk) | Done, SDK 2.2.0 |
+| Packs, grid and edit layout, with windows that step aside | Done |
+| System metrics and power management | Done |
+| Interactive widgets beneath the icons, text input through `prompt()` | Done |
+| Control panel with live previews, Windows 11 menus | Done |
+| Essentials (13 widgets) and the four themes | Done |
+| Ten UI languages and localisable packs | Done |
+| [Store](/packs/) catalogue and website | Done |
+| Store and search inside the control panel | In progress |
+| Installer and first public release, 2.0.0 | In progress |
+
+Follow the work on [GitHub](https://github.com/vitrine-org/vitrine).

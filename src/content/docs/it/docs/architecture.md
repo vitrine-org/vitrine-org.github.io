@@ -31,3 +31,20 @@ widget.
   spento.
 - I thread in background girano con EcoQoS di Windows, e gli intervalli si allungano con il risparmio
   energetico.
+
+## Vetro smerigliato sotto le icone
+
+I widget vivono sotto la vista delle icone, dove Windows non offre materiali di sfondo. Per
+`backdropFilter` Vitrine ricompone da sé lo sfondo di ogni monitor: una volta per monitor e per filtro
+disegna lo sfondo a risoluzione ridotta, lo sfoca e lo satura con gli effetti di Direct2D, e tiene il
+risultato in una piccola bitmap condivisa da tutti i widget di quel monitor. Disegnare un riquadro di
+vetro diventa un semplice riempimento con quella bitmap, e la cache si ricostruisce solo quando
+cambiano lo sfondo o la disposizione dei monitor.
+
+## Script isolati
+
+Ogni istanza di widget gira in un proprio runtime QuickJS, con un limite di memoria e un gestore di
+interruzione: uno script fuori controllo viene fermato invece di bloccare il desktop. Il widget
+raggiunge il mondo esterno solo attraverso l'API dell'host: metriche di sistema, HTTP verso gli host
+dichiarati, il proprio spazio di archiviazione e le impostazioni dell'utente. Vedi
+[Permessi](/it/docs/reference/permissions/) e [Limiti](/it/docs/reference/limits/).

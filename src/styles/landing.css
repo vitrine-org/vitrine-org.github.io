@@ -213,8 +213,6 @@ input:focus-visible {
 
 .desk {
 	--u: 1cqw;
-	--cols: 12;
-	--rows: 7;
 	position: relative;
 	aspect-ratio: 16 / 9;
 	border-radius: calc(var(--u) * 1.2);
@@ -227,164 +225,20 @@ input:focus-visible {
 	will-change: transform;
 }
 
+/* The wallpaper and its widgets are a real render made with `vitrine render`, one per theme. */
 .wall {
 	position: absolute;
-	inset: -4%;
+	inset: 0;
 }
 
-.wall svg {
-	display: block;
+.wall img {
 	width: 100%;
 	height: 100%;
+	object-fit: cover;
+	object-position: 100% 0;
 }
 
-.cells,
-.layer.widgets {
-	position: absolute;
-	top: calc(var(--u) * 3);
-	left: calc(var(--u) * 3);
-	right: calc(var(--u) * 3);
-	bottom: calc(var(--u) * 5.6);
-}
-
-.cells {
-	background-image: radial-gradient(circle, rgb(255 255 255 / 0.4) calc(var(--u) * 0.14), transparent calc(var(--u) * 0.18));
-	background-size: calc(100% / var(--cols)) calc(100% / var(--rows));
-	background-position: calc(100% / var(--cols) / -2) calc(100% / var(--rows) / -2);
-	opacity: 0.35;
-}
-
-.layer.widgets {
-	display: grid;
-	grid-template-columns: repeat(var(--cols), 1fr);
-	grid-template-rows: repeat(var(--rows), 1fr);
-	gap: calc(var(--u) * 1.2);
-}
-
-.w {
-	display: flex;
-	flex-direction: column;
-	min-width: 0;
-	padding: calc(var(--u) * 1.4) calc(var(--u) * 1.7);
-	border-radius: calc(var(--u) * 1.3);
-}
-
-.w-clock {
-	grid-column: 6 / span 4;
-	grid-row: 2 / span 2;
-	justify-content: center;
-}
-
-.w-clock .time {
-	font-size: calc(var(--u) * 6.4);
-	font-weight: var(--fw-semibold);
-	line-height: 1;
-	letter-spacing: -0.04em;
-}
-
-.w-clock .date {
-	margin-top: calc(var(--u) * 0.8);
-	font-size: calc(var(--u) * 1.35);
-	color: #3d3d3d;
-	text-transform: capitalize;
-}
-
-.w-sys {
-	grid-column: 10 / span 3;
-	grid-row: 2 / span 3;
-	justify-content: center;
-	gap: calc(var(--u) * 1.4);
-}
-
-.meter span {
-	display: block;
-	margin-bottom: calc(var(--u) * 0.5);
-	font-size: calc(var(--u) * 1.2);
-	font-weight: var(--fw-semibold);
-	color: #3d3d3d;
-}
-
-.meter i {
-	display: block;
-	height: calc(var(--u) * 0.7);
-	border-radius: 99px;
-	background: rgb(0 0 0 / 0.1);
-	overflow: hidden;
-}
-
-.meter i::before {
-	content: '';
-	display: block;
-	height: 100%;
-	width: calc(var(--v) * 100%);
-	border-radius: inherit;
-	background: linear-gradient(90deg, var(--cyan), var(--blue));
-	transition: width 1.6s cubic-bezier(0.3, 0.7, 0.2, 1);
-}
-
-.w-todo {
-	grid-column: 2 / span 3;
-	grid-row: 4 / span 2;
-	gap: calc(var(--u) * 0.7);
-	padding-left: calc(var(--u) * 2.4);
-}
-
-.w-title {
-	margin-bottom: calc(var(--u) * 0.2);
-	font-size: calc(var(--u) * 1.35);
-	font-weight: var(--fw-semibold);
-}
-
-.todo {
-	display: flex;
-	align-items: center;
-	gap: calc(var(--u) * 0.8);
-	font-size: calc(var(--u) * 1.2);
-	white-space: nowrap;
-	cursor: pointer;
-}
-
-.todo input {
-	appearance: none;
-	flex: none;
-	display: grid;
-	place-items: center;
-	width: calc(var(--u) * 1.4);
-	height: calc(var(--u) * 1.4);
-	margin: 0;
-	border-radius: calc(var(--u) * 0.4);
-	border: max(1px, calc(var(--u) * 0.12)) solid rgb(0 0 0 / 0.3);
-	background: rgb(255 255 255 / 0.6);
-	cursor: pointer;
-	transition: background-color 0.2s, border-color 0.2s;
-}
-
-.todo input::after {
-	content: '';
-	width: 45%;
-	height: 25%;
-	border-left: max(1.5px, calc(var(--u) * 0.16)) solid #fff;
-	border-bottom: max(1.5px, calc(var(--u) * 0.16)) solid #fff;
-	rotate: -45deg;
-	translate: 0 -15%;
-	opacity: 0;
-}
-
-.todo input:checked {
-	background: var(--blue);
-	border-color: var(--blue);
-}
-
-.todo input:checked::after {
-	opacity: 1;
-}
-
-.todo input:checked + span {
-	color: #6b6b6b;
-	text-decoration: line-through;
-}
-
-/* Desktop icons, above the widgets (Windows 11 style, about 150% scaling). */
+/* Desktop icons, above the widgets (Windows 11 style). */
 .layer.icons {
 	position: absolute;
 	top: calc(var(--u) * 1.2);
@@ -415,7 +269,7 @@ input:focus-visible {
 	line-height: 1.25;
 	color: #fff;
 	text-align: center;
-	text-shadow: 0 1px 2px rgb(0 0 0 / 0.75);
+	text-shadow: 0 1px 2px rgb(0 0 0 / 0.8), 0 0 6px rgb(0 0 0 / 0.45);
 	white-space: nowrap;
 }
 
@@ -425,12 +279,12 @@ input:focus-visible {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	height: calc(var(--u) * 3.4);
-	background: rgb(240 243 249 / 0.85);
-	border-top: 1px solid rgb(255 255 255 / 0.55);
+	height: calc(var(--u) * 3.125);
+	background: var(--tb-bg);
+	border-top: 1px solid var(--tb-edge);
 	-webkit-backdrop-filter: blur(24px) saturate(1.8);
 	backdrop-filter: blur(24px) saturate(1.8);
-	color: #1b1b1b;
+	color: var(--tb-text);
 }
 
 .tb-center {
@@ -459,7 +313,7 @@ input:focus-visible {
 }
 
 .tb-app.running {
-	background: rgb(255 255 255 / 0.6);
+	background: var(--tb-search);
 }
 
 .tb-app.running::after {
@@ -483,10 +337,10 @@ input:focus-visible {
 	margin-inline: calc(var(--u) * 0.3);
 	padding-inline: calc(var(--u) * 0.8);
 	border-radius: 99px;
-	background: rgb(255 255 255 / 0.75);
-	border: 1px solid rgb(0 0 0 / 0.06);
+	background: var(--tb-search);
+	border: 1px solid var(--tb-edge);
 	font-size: calc(var(--u) * 0.85);
-	color: #5f5f5f;
+	color: var(--tb-text-2);
 }
 
 .taskbar .icon {
@@ -527,24 +381,12 @@ input:focus-visible {
 @container (max-width: 560px) {
 	.desk {
 		--u: 2cqw;
-		--cols: 6;
-		--rows: 9;
 		aspect-ratio: 3 / 4;
 	}
 
-	.w-clock {
-		grid-column: 3 / span 4;
-		grid-row: 1 / span 2;
-	}
-
-	.w-sys {
-		grid-column: 4 / span 3;
-		grid-row: 3 / span 3;
-	}
-
-	.w-todo {
-		grid-column: 2 / span 4;
-		grid-row: 6 / span 2;
+	/* The render is cropped to its widgets; the icons would sit on top of them. */
+	.layer.icons {
+		display: none;
 	}
 
 	.tb-search {
@@ -1013,6 +855,418 @@ html:not(.anim) .pw-2 {
 	font-size: var(--fs-12);
 	line-height: var(--lh-ui);
 	color: var(--text-3);
+}
+
+/* Real renders exist in a light and a dark version. */
+.shot-light {
+	display: var(--show-light);
+}
+
+.shot-dark {
+	display: var(--show-dark);
+}
+
+/* Glass: the same widgets in light and dark, split on a diagonal. */
+.split {
+	margin: 0;
+	border-radius: var(--radius-xl);
+	overflow: hidden;
+	border: 1px solid var(--line);
+	box-shadow: var(--glass-shadow);
+	aspect-ratio: 1808 / 800;
+}
+
+.split img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.split .split-dark {
+	clip-path: polygon(58% 0, 100% 0, 100% 100%, 42% 100%);
+}
+
+.split figcaption {
+	position: absolute;
+	inset: auto var(--sp-3) var(--sp-3);
+	display: flex;
+	justify-content: space-between;
+	pointer-events: none;
+}
+
+.split figcaption span {
+	padding: 2px var(--sp-3);
+	border-radius: var(--radius-pill);
+	font-size: var(--fs-12);
+	font-weight: var(--fw-semibold);
+	line-height: var(--lh-ui);
+	color: #141414;
+	background: rgb(255 255 255 / 0.85);
+}
+
+.split figcaption span + span {
+	color: #f2f2f2;
+	background: rgb(20 22 30 / 0.8);
+}
+
+/* Edit layout: a window steps aside, the toolbar floats at the top. */
+.board {
+	overflow: hidden;
+	padding-top: calc(var(--pad) + 2.75rem);
+	padding-bottom: calc(var(--pad) + 1.75rem);
+}
+
+.win {
+	position: absolute;
+	left: 14%;
+	right: 22%;
+	top: 22%;
+	height: 56%;
+	z-index: 2;
+	border-radius: var(--radius-m);
+	background: var(--bg);
+	border: 1px solid var(--line-strong);
+	box-shadow: 0 24px 48px -20px rgb(0 0 0 / 0.35);
+	display: flex;
+	gap: 6px;
+	padding: 10px 12px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.win i {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--line-strong);
+}
+
+.edit-bar {
+	position: absolute;
+	top: var(--sp-3);
+	left: 50%;
+	translate: -50% 0;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	gap: var(--sp-2);
+	padding: var(--sp-1);
+	border-radius: var(--radius-m);
+	font-size: var(--fs-12);
+	font-weight: var(--fw-semibold);
+	line-height: var(--lh-ui);
+	white-space: nowrap;
+}
+
+.edit-bar span {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--sp-1);
+	padding: var(--sp-1) var(--sp-3);
+	border-radius: var(--radius-s);
+}
+
+.edit-bar .done {
+	color: #fff;
+	background: var(--blue);
+}
+
+.edit-hint {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: var(--sp-2);
+	margin: 0;
+	font-size: var(--fs-12);
+	line-height: var(--lh-ui);
+	text-align: center;
+	color: var(--text-3);
+}
+
+/* Control panel screenshot with a Windows 11 menu over it. */
+.panel-shot {
+	padding-bottom: var(--sp-8);
+}
+
+.panel-img {
+	width: 100%;
+	height: auto;
+	border-radius: var(--radius-m);
+	border: 1px solid var(--line-strong);
+	box-shadow: var(--glass-shadow);
+}
+
+.menu {
+	--menu-text: #1b1b1b;
+	--menu-bg: rgb(249 249 249 / 0.84);
+	--menu-edge: rgb(0 0 0 / 0.08);
+	--menu-hover: rgb(0 0 0 / 0.05);
+	position: absolute;
+	right: calc(var(--sp-5) * -1);
+	bottom: 0;
+	width: min(15.5rem, 62%);
+	margin: 0;
+	padding: 4px;
+	list-style: none;
+	border-radius: 8px;
+	font-family: 'Segoe UI Variable Text', 'Segoe UI', var(--font);
+	font-size: var(--fs-14);
+	line-height: 1.3;
+	color: var(--menu-text);
+	background: var(--menu-bg);
+	border: 1px solid var(--menu-edge);
+	box-shadow: 0 8px 16px rgb(0 0 0 / 0.14), 0 0 2px rgb(0 0 0 / 0.1);
+	-webkit-backdrop-filter: blur(30px) saturate(1.8);
+	backdrop-filter: blur(30px) saturate(1.8);
+}
+
+:root[data-theme='dark'] .menu {
+	--menu-text: #f3f3f3;
+	--menu-bg: rgb(44 44 44 / 0.88);
+	--menu-edge: rgb(255 255 255 / 0.08);
+	--menu-hover: rgb(255 255 255 / 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) .menu {
+		--menu-text: #f3f3f3;
+		--menu-bg: rgb(44 44 44 / 0.88);
+		--menu-edge: rgb(255 255 255 / 0.08);
+		--menu-hover: rgb(255 255 255 / 0.06);
+	}
+}
+
+.menu li {
+	display: flex;
+	align-items: center;
+	gap: var(--sp-3);
+	padding: 6px 10px;
+	border-radius: 4px;
+}
+
+.menu li span {
+	flex: 1;
+}
+
+.menu li:nth-child(3) {
+	background: var(--menu-hover);
+}
+
+.menu .sep {
+	height: 1px;
+	margin: 3px 0;
+	padding: 0;
+	background: var(--menu-edge);
+}
+
+/* Showcases: Essentials and the themes, real renders across the container. */
+.showcase {
+	padding-top: var(--section-gap);
+}
+
+.show-head {
+	max-width: 40rem;
+}
+
+.eyebrow {
+	margin: 0 0 var(--sp-3);
+	font-size: var(--fs-14);
+	font-weight: var(--fw-semibold);
+	line-height: var(--lh-ui);
+	letter-spacing: 0.02em;
+	color: var(--link);
+}
+
+.show-head h2,
+.cta h2 {
+	margin: 0;
+	font-size: var(--fs-36);
+	font-weight: var(--fw-semibold);
+	line-height: var(--lh-heading);
+	letter-spacing: var(--track-heading);
+	text-wrap: balance;
+}
+
+.show-head p:not(.eyebrow),
+.cta-text > p:not(.eyebrow) {
+	margin: var(--sp-4) 0 0;
+	font-size: var(--fs-18);
+	color: var(--text-2);
+	text-wrap: pretty;
+}
+
+.text-link {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--sp-2);
+	margin-top: var(--sp-5);
+	font-weight: var(--fw-semibold);
+	line-height: var(--lh-ui);
+	color: var(--link);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 4px;
+}
+
+.text-link:hover {
+	color: var(--link-hover);
+}
+
+.board-shot {
+	margin: var(--sp-7) 0 0;
+}
+
+.board-shot img {
+	width: 100%;
+	height: auto;
+	border-radius: var(--radius-xl);
+	border: 1px solid var(--line);
+	box-shadow: var(--glass-shadow);
+}
+
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--sp-2);
+	margin: var(--sp-5) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.chips li {
+	padding: var(--sp-1) var(--sp-3);
+	border-radius: var(--radius-pill);
+	border: 1px solid var(--line);
+	font-size: var(--fs-14);
+	line-height: var(--lh-ui);
+	color: var(--text-2);
+}
+
+.themes {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--sp-7) var(--grid-gutter);
+	margin: var(--sp-7) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.themes a {
+	display: block;
+	text-decoration: none;
+	color: inherit;
+	border-radius: var(--radius-xl);
+}
+
+.themes img {
+	width: 100%;
+	height: auto;
+	border-radius: var(--radius-xl);
+	border: 1px solid var(--line);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.themes a:hover img {
+	transform: translateY(-3px);
+	box-shadow: var(--glass-shadow);
+}
+
+.theme-text {
+	display: block;
+	margin-top: var(--sp-4);
+	line-height: var(--lh-ui);
+}
+
+.theme-text b {
+	display: block;
+	font-size: var(--fs-18);
+	font-weight: var(--fw-semibold);
+}
+
+.theme-text span {
+	display: block;
+	margin-top: var(--sp-1);
+	font-size: var(--fs-14);
+	color: var(--text-3);
+}
+
+/* Store and languages. */
+.cta {
+	padding-top: var(--section-gap);
+}
+
+.cta-card {
+	display: grid;
+	grid-template-columns: 7fr 5fr;
+	gap: var(--sp-8);
+	padding: var(--sp-8);
+	border-radius: var(--radius-xl);
+}
+
+.cta-text .actions {
+	justify-content: flex-start;
+}
+
+.cta-langs h3 {
+	margin: 0;
+	font-size: var(--fs-21);
+	font-weight: var(--fw-semibold);
+	line-height: var(--lh-heading);
+}
+
+.cta-langs > p {
+	margin: var(--sp-3) 0 0;
+	color: var(--text-2);
+}
+
+.langs {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0 var(--sp-4);
+	margin: var(--sp-4) 0 0;
+	padding: 0;
+	list-style: none;
+	font-size: var(--fs-14);
+	line-height: 1.9;
+	color: var(--text-2);
+}
+
+@media (max-width: 899px) {
+	.cta-card {
+		grid-template-columns: 1fr;
+		gap: var(--sp-7);
+		padding: var(--sp-6);
+	}
+
+	.menu {
+		right: 0;
+	}
+}
+
+@media (max-width: 559px) {
+	.themes {
+		grid-template-columns: 1fr;
+	}
+
+	.cta-card {
+		padding: var(--sp-5);
+	}
+
+	.show-head h2,
+	.cta h2 {
+		font-size: var(--fs-24);
+	}
+
+	.edit-hint {
+		display: none;
+	}
+
+	.menu {
+		font-size: var(--fs-12);
+		width: 72%;
+	}
 }
 
 /* Before the script runs, keep animated elements hidden to avoid a flash. */

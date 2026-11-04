@@ -1,20 +1,29 @@
 ---
 import '@fontsource-variable/schibsted-grotesk';
 import '../styles/landing.css';
+import { Image } from 'astro:assets';
 import icon from '../assets/vitrine.svg';
 import Icon from './Icon.astro';
 import SiteBar from './SiteBar.astro';
+import SiteFooter from './SiteFooter.astro';
 import WinIcon from './WinIcon.astro';
-import { strings, type Lang } from '../i18n/landing';
+import { languages, strings, type Lang } from '../i18n/landing';
+
+// Real renders: each widget drawn by `vitrine render --backdrop` over a crop of an original
+// wallpaper, then composited onto it at its grid cell (light and dark, en and it).
+const renders = import.meta.glob<{ default: ImageMetadata }>('../assets/renders/*.webp', { eager: true });
+const shot = (name: string) => renders[`../assets/renders/${name}.webp`].default;
 
 interface Props {
 	lang: Lang;
 }
 
-const t = strings[Astro.props.lang];
+const lang = Astro.props.lang;
+const t = strings[lang];
 const docs = `${t.base}docs/`;
 const gh = 'https://github.com/vitrine-org/vitrine';
-const year = new Date().getFullYear();
+const wide = '(min-width: 1200px) 1152px, calc(100vw - 32px)';
+const half = '(min-width: 900px) 560px, calc(100vw - 32px)';
 ---
 
 <!doctype html>
@@ -48,76 +57,27 @@ const year = new Date().getFullYear();
 	</head>
 	<body>
 		<header class="site-header">
-			<SiteBar lang={Astro.props.lang} />
+			<SiteBar lang={lang} current="home" />
 		</header>
 
 		<main>
 			<section class="hero container grid">
-				<a class="pill glass" href={`${docs}roadmap/`} data-intro><Icon name="route" size={16} />{t.pill}</a>
+				<a class="pill glass" href={`${t.base}packs/`} data-intro><Icon name="building-store" size={16} />{t.pill}</a>
 				<h1 data-intro>{t.h1}</h1>
 				<p class="lead" data-intro>{t.lead}</p>
 				<div class="actions" data-intro>
-					<a class="button primary" href={`${docs}introduction/`}><Icon name="book-2" />{t.primary}</a>
+					<a class="button primary" href={`${docs}getting-started/install/`}><Icon name="arrow-right" />{t.primary}</a>
 					<a class="button glass" href={gh}><Icon name="brand-github" />{t.secondary}</a>
 				</div>
 				<p class="release" data-intro>{t.release}</p>
 
 				<div class="stage" data-intro-stage>
-					<div class="desk" role="img" aria-label={t.desk.alt} data-tilt data-locale={t.locale}>
-						<div class="wall" data-depth="1.6">
-							<svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-								<defs>
-									<radialGradient id="wp-bg" cx="52%" cy="58%" r="78%">
-										<stop offset="0" stop-color="#dcefff" />
-										<stop offset="0.38" stop-color="#7db3f2" />
-										<stop offset="0.75" stop-color="#2a63cf" />
-										<stop offset="1" stop-color="#0d3497" />
-									</radialGradient>
-									<linearGradient id="wp-p" x1="0" y1="0" x2="0" y2="1">
-										<stop offset="0" stop-color="#1a5be0" stop-opacity="0.95" />
-										<stop offset="0.6" stop-color="#5d9cf5" stop-opacity="0.8" />
-										<stop offset="1" stop-color="#ffffff" stop-opacity="0.95" />
-									</linearGradient>
-									<linearGradient id="wp-q" x1="0" y1="0" x2="0" y2="1">
-										<stop offset="0" stop-color="#0b3fb3" stop-opacity="0.9" />
-										<stop offset="1" stop-color="#9cc8ff" stop-opacity="0.85" />
-									</linearGradient>
-								</defs>
-								<rect width="1600" height="1000" fill="url(#wp-bg)" />
-								<g transform="translate(800 600)">
-									{[-64, 64, -40, 40, -14, 14, 0].map((a, i) => (
-										<path
-											d="M0 0C-130-150-70-360 0-430C70-360 130-150 0 0Z"
-											fill={i % 2 ? 'url(#wp-p)' : 'url(#wp-q)'}
-											opacity={0.55 + i * 0.06}
-											transform={`rotate(${a}) scale(${1 - Math.abs(a) / 220})`}
-										/>
-									))}
-								</g>
-							</svg>
+					<div class="desk" data-tilt>
+						<div class="wall" data-depth="1">
+							<Image class="shot-light" src={shot(`hero-${lang}-light`)} alt={t.desk.alt} widths={[800, 1280, 1800, 2304]} sizes={wide} loading="eager" fetchpriority="high" />
+							<Image class="shot-dark" src={shot(`hero-${lang}-dark`)} alt={t.desk.alt} widths={[800, 1280, 1800, 2304]} sizes={wide} loading="eager" />
 						</div>
-						<div class="cells" data-depth="0.9"></div>
-						<div class="layer widgets" data-depth="0.9">
-							<div class="w w-clock acrylic" data-widget>
-								<span class="time" data-clock="hm">12:41</span>
-								<span class="date" data-date data-lang={t.htmlLang}></span>
-							</div>
-							<div class="w w-sys acrylic" data-widget>
-								<div class="meter"><span>{t.desk.cpu}</span><i data-meter style="--v:.32"></i></div>
-								<div class="meter"><span>{t.desk.memory}</span><i data-meter style="--v:.58"></i></div>
-								<div class="meter"><span>{t.desk.disk}</span><i style="--v:.71"></i></div>
-							</div>
-							<div class="w w-todo acrylic" data-widget>
-								<span class="w-title">{t.desk.todoTitle}</span>
-								{t.desk.todo.map((item, i) => (
-									<label class="todo">
-										<input type="checkbox" checked={i === 1} tabindex="-1" />
-										<span>{item}</span>
-									</label>
-								))}
-							</div>
-						</div>
-						<div class="layer icons" data-depth="0.4">
+						<div class="layer icons" data-depth="0.4" aria-hidden="true">
 							{t.desk.icons.map((label, i) => (
 								<div class="dicon">
 									<WinIcon name={(['pc', 'bin', 'documents', 'text'] as const)[i]} />
@@ -125,7 +85,7 @@ const year = new Date().getFullYear();
 								</div>
 							))}
 						</div>
-						<div class="taskbar" data-depth="0.15">
+						<div class="taskbar" data-depth="0.15" aria-hidden="true">
 							<div class="tb-center">
 								<span class="tb-app"><WinIcon name="start" /></span>
 								<span class="tb-search"><Icon name="search" />{t.desk.search}</span>
@@ -138,7 +98,7 @@ const year = new Date().getFullYear();
 							<div class="tb-tray">
 								<Icon name="chevron-up" />
 								<span class="tb-tray-icons"><Icon name="wifi" /><Icon name="volume" /><Icon name="battery-3" /></span>
-								<span class="tb-clock"><span data-tray-time>00:00</span><span data-tray-date>01/01/2026</span></span>
+								<span class="tb-clock" data-locale={t.locale}><span data-tray-time>00:00</span><span data-tray-date>01/01/2026</span></span>
 							</div>
 						</div>
 					</div>
@@ -147,12 +107,12 @@ const year = new Date().getFullYear();
 
 			<section class="feature container grid">
 				<div class="feature-text" data-reveal>
-					<h2>{t.f1.h}</h2>
-					<p>{t.f1.p}</p>
-					<a href={`${docs}architecture/`}><Icon name="stack-2" />{t.f1.link}</a>
+					<h2>{t.layers.h}</h2>
+					<p>{t.layers.p}</p>
+					<a href={`${docs}architecture/`}><Icon name="stack-2" />{t.layers.link}</a>
 				</div>
 				<div class="visual stack" aria-hidden="true" data-stack>
-					{t.f1.layers.map((label, i) => (
+					{t.layers.labels.map((label, i) => (
 						<div class={`plane-wrap pw-${i}`} data-plane={i}>
 							<div class={`plane plane-${i}`}>
 								{i === 1 && (<><b></b><b></b><b></b></>)}
@@ -166,75 +126,154 @@ const year = new Date().getFullYear();
 
 			<section class="feature reverse container grid">
 				<div class="feature-text" data-reveal>
-					<h2>{t.f2.h}</h2>
-					<p>{t.f2.p}</p>
-					<a href={`${docs}introduction/`}><Icon name="layout-grid" />{t.f2.link}</a>
+					<h2>{t.glass.h}</h2>
+					<p>{t.glass.p}</p>
+					<a href={`${docs}guides/glass-and-legibility/`}><Icon name="blur" />{t.glass.link}</a>
 				</div>
-				<div class="visual board glass" aria-hidden="true" data-board>
-					<div class="tile tile-a acrylic" data-tile></div>
-					<div class="tile tile-b acrylic" data-tile></div>
-					<div class="tile tile-c acrylic editing" data-tile><i class="handle"></i></div>
-				</div>
+				<figure class="visual split" data-split>
+					<Image class="split-light" src={shot(`essentials-${lang}-light`)} alt={t.glass.alt} widths={[600, 1100, 1808]} sizes={half} />
+					<Image class="split-dark" src={shot(`essentials-${lang}-dark`)} alt="" widths={[600, 1100, 1808]} sizes={half} />
+					<figcaption><span>{t.glass.light}</span><span>{t.glass.dark}</span></figcaption>
+				</figure>
 			</section>
 
 			<section class="feature container grid">
 				<div class="feature-text" data-reveal>
-					<h2>{t.f3.h}</h2>
-					<p>{t.f3.p}</p>
-					<a href={`${docs}architecture/`}><Icon name="code" />{t.f3.link}</a>
+					<h2>{t.edit.h}</h2>
+					<p>{t.edit.p}</p>
+					<a href={`${docs}getting-started/install/`}><Icon name="layout-grid" />{t.edit.link}</a>
 				</div>
-				<div class="visual code-wrap" data-code>
-					<pre class="code glass" aria-label="Clock widget written in JSX"><code><span class="ln"><span class="k">import</span> {'{'} createSignal, onCleanup {'}'} <span class="k">from</span> <span class="s">"solid-js"</span>;</span>
-<span class="ln"> </span>
-<span class="ln"><span class="k">export default function</span> <span class="f">Clock</span>() {'{'}</span>
-<span class="ln">  <span class="k">const</span> [now, setNow] = <span class="f">createSignal</span>(<span class="k">new</span> Date());</span>
-<span class="ln">  <span class="k">const</span> timer = <span class="f">setInterval</span>(() =&gt; <span class="f">setNow</span>(<span class="k">new</span> Date()), <span class="n">1000</span>);</span>
-<span class="ln">  <span class="f">onCleanup</span>(() =&gt; <span class="f">clearInterval</span>(timer));</span>
-<span class="ln"> </span>
-<span class="ln">  <span class="k">return</span> <span class="t">&lt;text&gt;</span>{'{'}<span class="f">now</span>().toLocaleTimeString(){'}'}<span class="t">&lt;/text&gt;</span>;</span>
-<span class="ln">{'}'}</span></code></pre>
-					<div class="mini acrylic" aria-hidden="true"><span data-clock="hms">12:41:07</span></div>
+				<div class="visual board" aria-hidden="true" data-board>
+					<div class="win" data-win><i></i><i></i><i></i></div>
+					<div class="edit-bar glass"><span><Icon name="plus" size={14} />{t.edit.add}</span><span class="done">{t.edit.done}</span></div>
+					<div class="tile tile-a acrylic" data-tile></div>
+					<div class="tile tile-b acrylic" data-tile></div>
+					<div class="tile tile-c acrylic editing" data-tile><i class="handle"></i></div>
+					<p class="edit-hint">{t.edit.hint}</p>
 				</div>
 			</section>
 
 			<section class="feature reverse container grid">
 				<div class="feature-text" data-reveal>
-					<h2>{t.f4.h}</h2>
-					<p>{t.f4.p}</p>
-					<a href={`${docs}roadmap/`}><Icon name="route" />{t.f4.link}</a>
+					<h2>{t.panel.h}</h2>
+					<p>{t.panel.p}</p>
+					<a href={`${docs}getting-started/install/`}><Icon name="adjustments" />{t.panel.link}</a>
+				</div>
+				<div class="visual panel-shot">
+					<Image class="panel-img" src={shot(`panel-${lang}`)} alt={t.panel.alt} widths={[600, 1225]} sizes={half} />
+					<ul class="menu" aria-label={t.panel.menuLabel}>
+						{t.panel.menu.map((label, i) => (
+							<>
+								{(i === 4 || i === 7) && <li class="sep" role="separator"></li>}
+								<li class:list={{ check: i === 5 }}>
+									<Icon name={['plus', 'layout-grid-add', 'layout-dashboard', 'settings', 'player-pause', 'check', 'building-store', 'power'][i]} size={16} />
+									<span>{label}</span>
+									{i === 1 && <Icon name="chevron-right" size={14} />}
+								</li>
+							</>
+						))}
+					</ul>
+				</div>
+			</section>
+
+			<section class="showcase container">
+				<div class="show-head" data-reveal>
+					<p class="eyebrow">{t.essentials.eyebrow}</p>
+					<h2>{t.essentials.h}</h2>
+					<p>{t.essentials.p}</p>
+				</div>
+				<figure class="board-shot">
+					<Image class="shot-light" src={shot(`essentials-${lang}-light`)} alt={t.essentials.alt} widths={[800, 1300, 1808]} sizes={wide} />
+					<Image class="shot-dark" src={shot(`essentials-${lang}-dark`)} alt={t.essentials.alt} widths={[800, 1300, 1808]} sizes={wide} />
+				</figure>
+				<ul class="chips">
+					{t.essentials.widgets.map((w) => <li>{w}</li>)}
+				</ul>
+			</section>
+
+			<section class="showcase container">
+				<div class="show-head" data-reveal>
+					<p class="eyebrow">{t.themes.eyebrow}</p>
+					<h2>{t.themes.h}</h2>
+					<p>{t.themes.p}</p>
+					<a class="text-link" href={`${docs}themes/create-a-theme/`}><Icon name="palette" />{t.themes.link}</a>
+				</div>
+				<ul class="themes">
+					{t.themes.items.map((th) => (
+						<li>
+							<a href={`${t.base}packs/#dev.vitrine.${th.id}`} aria-label={`${th.name}: ${t.themes.view}`}>
+								<Image src={shot(`theme-${th.id}-${lang}`)} alt={t.themes.alt(th.name)} widths={[600, 1232]} sizes="(min-width: 900px) 560px, calc(100vw - 32px)" />
+								<span class="theme-text"><b>{th.name}</b><span>{th.note}</span></span>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+
+			<section class="feature container grid">
+				<div class="feature-text" data-reveal>
+					<h2>{t.jsx.h}</h2>
+					<p>{t.jsx.p}</p>
+					<a href={`${docs}getting-started/first-widget/`}><Icon name="code" />{t.jsx.link}</a>
+				</div>
+				<div class="visual code-wrap" data-code>
+					<pre class="code glass" aria-label={t.jsx.codeLabel}><code><span class="ln"><span class="k">import</span> {'{'} formatDate, mount, useClock {'}'} <span class="k">from</span> <span class="s">"@vitrine/sdk"</span>;</span>
+<span class="ln"> </span>
+<span class="ln"><span class="k">function</span> <span class="f">Clock</span>() {'{'}</span>
+<span class="ln">  <span class="k">const</span> now = <span class="f">useClock</span>(<span class="s">"minute"</span>);</span>
+<span class="ln">  <span class="k">return</span> (</span>
+<span class="ln">    <span class="t">&lt;view</span> style={'{{'} padding: <span class="n">16</span>, borderRadius: <span class="n">12</span>,</span>
+<span class="ln">      backdropFilter: <span class="s">"blur(16px) saturate(1.6)"</span> {'}}'}<span class="t">&gt;</span></span>
+<span class="ln">      <span class="t">&lt;text</span> style={'{{'} fontSize: <span class="n">40</span>, color: <span class="s">"#fff"</span> {'}}'}<span class="t">&gt;</span></span>
+<span class="ln">        {'{'}<span class="f">formatDate</span>(<span class="f">now</span>(), <span class="s">"HH:mm"</span>){'}'}</span>
+<span class="ln">      <span class="t">&lt;/text&gt;</span></span>
+<span class="ln">    <span class="t">&lt;/view&gt;</span></span>
+<span class="ln">  );</span>
+<span class="ln">{'}'}</span>
+<span class="ln"> </span>
+<span class="ln"><span class="f">mount</span>(() =&gt; <span class="t">&lt;Clock /&gt;</span>);</span></code></pre>
+					<div class="mini acrylic" aria-hidden="true"><span data-clock="hm">12:41</span></div>
+				</div>
+			</section>
+
+			<section class="feature reverse container grid">
+				<div class="feature-text" data-reveal>
+					<h2>{t.power.h}</h2>
+					<p>{t.power.p}</p>
+					<a href={`${docs}guides/performance/`}><Icon name="bolt" />{t.power.link}</a>
 				</div>
 				<div class="visual repaint glass" aria-hidden="true">
 					<div class="repaint-clock">
 						<span data-part="hm">12:41</span><span class="sec" data-part="s">:07</span>
 					</div>
-					<p class="caption"><i></i>{t.f4.caption}</p>
+					<p class="caption"><i></i>{t.power.caption}</p>
+				</div>
+			</section>
+
+			<section class="cta container grid">
+				<div class="cta-card glass" data-reveal>
+					<div class="cta-text">
+						<p class="eyebrow">{t.store.eyebrow}</p>
+						<h2>{t.store.h}</h2>
+						<p>{t.store.p}</p>
+						<div class="actions">
+							<a class="button primary" href={`${t.base}packs/`}><Icon name="building-store" />{t.store.cta}</a>
+							<a class="button glass" href="https://github.com/vitrine-org/store#add-your-pack"><Icon name="upload" />{t.store.publish}</a>
+						</div>
+					</div>
+					<div class="cta-langs">
+						<h3>{t.langs.h}</h3>
+						<p>{t.langs.p}</p>
+						<ul class="langs">
+							{languages.map((l) => <li lang={l.code}>{l.name}</li>)}
+						</ul>
+						<a class="text-link" href={`${docs}guides/localisation/`}><Icon name="language" />{t.langs.link}</a>
+					</div>
 				</div>
 			</section>
 		</main>
 
-		<footer class="foot container">
-			<div class="foot-top grid">
-				<div class="foot-about">
-					<a class="brand" href={t.base}>
-						<img src={icon.src} alt="" width="28" height="28" />
-						<span>Vitrine</span>
-					</a>
-					<p>{t.footer.about}</p>
-				</div>
-				<div class="foot-col">
-					<h3>{t.footer.project}</h3>
-					<a href={`${docs}introduction/`}><Icon name="book-2" size={16} />{t.footer.docs}</a>
-					<a href={`${docs}roadmap/`}><Icon name="route" size={16} />{t.nav.roadmap}</a>
-					<a href={gh}><Icon name="brand-github" size={16} />GitHub</a>
-				</div>
-				<div class="foot-col">
-					<h3>{t.footer.language}</h3>
-					<a href="/" hreflang="en">English</a>
-					<a href="/it/" hreflang="it">Italiano</a>
-				</div>
-			</div>
-			<p class="copy">© {year} {t.footer.copy}</p>
-		</footer>
+		<SiteFooter lang={lang} />
 
 		<script>
 			import '../scripts/landing';

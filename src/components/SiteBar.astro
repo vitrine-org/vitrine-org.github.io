@@ -10,11 +10,12 @@ interface Props {
 	lang: Lang;
 	/** Link for the language switch; defaults to the other locale's home. */
 	otherHref?: string;
-	/** Marks the Docs link as current. */
-	inDocs?: boolean;
+	/** The section the page belongs to, marked as current in the nav. */
+	current?: 'home' | 'docs' | 'store';
 }
 
-const { lang, inDocs = false } = Astro.props;
+const { lang, current = 'home' } = Astro.props;
+const inDocs = current === 'docs';
 const t = strings[lang];
 const otherHref = Astro.props.otherHref ?? t.other.href;
 ---
@@ -29,11 +30,14 @@ const otherHref = Astro.props.otherHref ?? t.other.href;
 		<a href={`${t.base}docs/introduction/`} aria-current={inDocs ? 'page' : undefined}>
 			<Icon name="book-2" />{t.nav.docs}
 		</a>
+		<a href={`${t.base}packs/`} aria-current={current === 'store' ? 'page' : undefined}>
+			<Icon name="building-store" />{t.nav.store}
+		</a>
 		<a class="hide-narrow" href="https://github.com/vitrine-org/vitrine">
 			<Icon name="brand-github" />GitHub
 		</a>
-		<a class="bar-lang" href={otherHref} hreflang={lang === 'en' ? 'it' : 'en'}>
-			<Icon name="language" />{t.other.label}
+		<a class="bar-lang" href={otherHref} hreflang={lang === "en" ? "it" : "en"} aria-label={t.other.label}>
+			<Icon name="language" /><span class="lang-label">{t.other.label}</span>
 		</a>
 		<ThemeToggle label={t.nav.theme} />
 	</nav>

@@ -87,6 +87,14 @@
 	--code-s: #b4380a;
 	--code-f: #0b6e85;
 	--code-t: #b81f55;
+	/* Real renders come in a light and a dark version; show the one for the theme. */
+	--show-light: block;
+	--show-dark: none;
+	--tb-bg: rgb(240 243 249 / 0.85);
+	--tb-edge: rgb(255 255 255 / 0.55);
+	--tb-search: rgb(255 255 255 / 0.75);
+	--tb-text: #1b1b1b;
+	--tb-text-2: #5f5f5f;
 	color-scheme: light;
 }
 
@@ -110,6 +118,13 @@
 		--code-s: #ffb86b;
 		--code-f: #6bf2e2;
 		--code-t: #ff8fab;
+		--show-light: none;
+		--show-dark: block;
+		--tb-bg: rgb(28 32 44 / 0.82);
+		--tb-edge: rgb(255 255 255 / 0.08);
+		--tb-search: rgb(255 255 255 / 0.06);
+		--tb-text: #f3f3f3;
+		--tb-text-2: #b8b8b8;
 		color-scheme: dark;
 	}
 }
@@ -133,6 +148,13 @@
 	--code-s: #ffb86b;
 	--code-f: #6bf2e2;
 	--code-t: #ff8fab;
+	--show-light: none;
+	--show-dark: block;
+	--tb-bg: rgb(28 32 44 / 0.82);
+	--tb-edge: rgb(255 255 255 / 0.08);
+	--tb-search: rgb(255 255 255 / 0.06);
+	--tb-text: #f3f3f3;
+	--tb-text-2: #b8b8b8;
 	color-scheme: dark;
 }
 

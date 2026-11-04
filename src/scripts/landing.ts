@@ -9,7 +9,6 @@ const $$ = <T extends Element = HTMLElement>(s: string, el: ParentNode = documen
 
 /* Live clocks, date and meters. */
 const pad = (n: number) => String(n).padStart(2, '0');
-const dateEl = $('[data-date]');
 const trayTime = $('[data-tray-time]');
 const trayDate = $('[data-tray-date]');
 const deskLocale = $('[data-locale]')?.dataset.locale;
@@ -47,9 +46,6 @@ function tick() {
 		if (trayTime) trayTime.textContent = d.toLocaleTimeString(deskLocale, { hour: '2-digit', minute: '2-digit' });
 		if (trayDate) trayDate.textContent = d.toLocaleDateString(deskLocale, { day: '2-digit', month: '2-digit', year: 'numeric' });
 	}
-	if (dateEl && hm !== lastHm) {
-		dateEl.textContent = d.toLocaleDateString(dateEl.dataset.lang, { weekday: 'long', day: 'numeric', month: 'long' });
-	}
 	lastHm = hm;
 }
 
@@ -58,16 +54,6 @@ setTimeout(() => {
 	tick();
 	setInterval(tick, 1000);
 }, 1000 - (Date.now() % 1000));
-
-if (motion) {
-	setInterval(() => {
-		for (const m of $$('[data-meter]')) {
-			const v = parseFloat(m.style.getPropertyValue('--v')) || 0.4;
-			const next = Math.min(0.85, Math.max(0.15, v + (Math.random() - 0.5) * 0.16));
-			m.style.setProperty('--v', next.toFixed(3));
-		}
-	}, 2200);
-}
 
 /* Light that follows the cursor on glass panels. */
 if (finePointer) {
@@ -97,11 +83,9 @@ if (motion) {
 	/* Page load: text, then the desktop rises and its widgets settle in. */
 	const intro = $$('[data-intro]');
 	const stage = $('[data-intro-stage]');
-	const widgets = $$('[data-widget]');
 	const icons = $$('.dicon');
 	gsap.set(intro, { autoAlpha: 0, y: 18 });
 	gsap.set(stage, { autoAlpha: 0, y: 70, rotationX: 16, transformPerspective: 1600, transformOrigin: '50% 100%' });
-	gsap.set(widgets, { autoAlpha: 0, scale: 0.92, y: 12 });
 	gsap.set(icons, { autoAlpha: 0 });
 	root.classList.add('ready');
 
@@ -109,8 +93,7 @@ if (motion) {
 		.timeline({ defaults: { ease: 'power3.out' } })
 		.to(intro, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.07 })
 		.to(stage, { autoAlpha: 1, y: 0, rotationX: 0, duration: 1.3 }, 0.3)
-		.to(icons, { autoAlpha: 1, duration: 0.5, stagger: 0.05 }, 0.9)
-		.to(widgets, { autoAlpha: 1, scale: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'back.out(1.6)' }, 1.0);
+		.to(icons, { autoAlpha: 1, duration: 0.5, stagger: 0.05 }, 0.9);
 
 	/* Mouse: the desktop tilts and its layers separate by depth. */
 	if (finePointer) {
@@ -164,6 +147,12 @@ if (motion) {
 	/* Widgets snap into their cells. */
 	const board = $('[data-board]');
 	if (board) {
+		/* Edit layout: the open window steps aside first. */
+		gsap.fromTo(
+			$('[data-win]', board),
+			{ autoAlpha: 1, y: 0, scale: 1 },
+			{ autoAlpha: 0, y: 140, scale: 0.6, duration: 0.7, ease: 'power3.in', scrollTrigger: { trigger: board, start: 'top 75%' } },
+		);
 		const offsets = [
 			{ x: -50, y: -36, rotation: -6 },
 			{ x: 60, y: -44, rotation: 4 },
@@ -174,7 +163,7 @@ if (motion) {
 				...offsets[i],
 				autoAlpha: 0,
 				duration: 0.9,
-				delay: i * 0.12,
+				delay: 0.6 + i * 0.12,
 				ease: 'back.out(1.5)',
 				scrollTrigger: { trigger: board, start: 'top 75%' },
 			});
@@ -182,7 +171,7 @@ if (motion) {
 		gsap.from('.handle', {
 			scale: 0,
 			duration: 0.4,
-			delay: 0.7,
+			delay: 1.3,
 			ease: 'back.out(3)',
 			scrollTrigger: { trigger: board, start: 'top 75%' },
 		});

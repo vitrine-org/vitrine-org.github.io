@@ -48,15 +48,35 @@ export default defineConfig({
 				{
 					label: 'Getting started',
 					translations: { it: 'Per iniziare' },
+					items: [{ slug: 'docs/introduction' }, { autogenerate: { directory: 'docs/getting-started' } }],
+				},
+				{
+					label: 'Guides',
+					translations: { it: 'Guide' },
+					items: [{ autogenerate: { directory: 'docs/guides' } }],
+				},
+				{
+					label: 'Themes and design',
+					translations: { it: 'Temi e design' },
+					items: [{ slug: 'docs/themes/create-a-theme' }, { slug: 'docs/design/guidelines' }],
+				},
+				{
+					label: 'Publishing',
+					translations: { it: 'Pubblicazione' },
 					items: [
-						{ slug: 'docs/introduction' },
-						{ slug: 'docs/roadmap' },
+						{ slug: 'docs/publishing' },
+						{ label: 'Store', link: '/packs/', translations: { it: 'Store' } },
 					],
 				},
 				{
-					label: 'Concepts',
-					translations: { it: 'Concetti' },
-					items: [{ slug: 'docs/architecture' }],
+					label: 'Reference',
+					translations: { it: 'Riferimento' },
+					items: [{ autogenerate: { directory: 'docs/reference' } }],
+				},
+				{
+					label: 'Project',
+					translations: { it: 'Progetto' },
+					items: [{ slug: 'docs/architecture' }, { slug: 'docs/roadmap' }],
 				},
 			],
 		}),

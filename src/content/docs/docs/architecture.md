@@ -28,3 +28,18 @@ the widget instead.
 - Clocks wake up on second or minute boundaries, not continuously.
 - Rendering pauses when a full-screen app is in front, the session is locked or the display is off.
 - Background threads run with Windows EcoQoS, and intervals stretch on battery saver.
+
+## Frosted glass beneath the icons
+
+Widgets live under the icon view, where Windows offers no backdrop material. For `backdropFilter`,
+Vitrine recomposes each monitor's wallpaper itself: once per monitor and per filter it draws the
+wallpaper at reduced resolution, blurs and saturates it with Direct2D effects, and caches the result
+as one small bitmap shared by every widget on that monitor. Painting a glass box is then a single
+bitmap fill, and the cache is rebuilt only when the wallpaper or the monitor layout changes.
+
+## Sandboxed scripts
+
+Each widget instance runs in its own QuickJS runtime with a memory limit and an interrupt handler, so
+a runaway script is stopped instead of freezing the desktop. A widget only reaches the outside world
+through the host API: system metrics, HTTP to the hosts it declared, its own storage and the user's
+settings. See [Permissions](/docs/reference/permissions/) and [Limits](/docs/reference/limits/).
