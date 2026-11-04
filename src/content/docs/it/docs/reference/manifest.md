@@ -53,6 +53,7 @@ viene caricato e il motivo finisce nel log.
 | `homepage` | string | no | Non validato. |
 | `minEngine` | string | no | Versione semantica del Vitrine più vecchio in grado di eseguire il pacchetto. I motori più vecchi si rifiutano di installarlo o caricarlo, con un messaggio che invita ad aggiornare Vitrine. |
 | `fonts` | string[] | no | [Percorsi sicuri](#percorsi) a file TTF o OTF, che devono esistere. I font vengono registrati per tutti i widget del pack; vedi [Font e risorse](/it/docs/guides/fonts-and-assets/). |
+| `icon` | string | no | [Percorso sicuro](#percorsi) a un PNG o SVG quadrato (256 × 256 o più, sfondo trasparente) che rappresenta il pack nel pannello di controllo e nello Store. I pack senza icona mostrano un monogramma. Dal motore 2.0.3; i motori precedenti lo ignorano. |
 | `widgets` | object[] | sì | Almeno un widget. |
 | `locales` | object | no | Nomi e descrizioni localizzati; vedi [Testi localizzati](#testi-localizzati). |
 
