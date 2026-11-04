@@ -9,7 +9,7 @@ sidebar:
 SolidJS: gli hook restituiscono accessor di Solid (`() => T`) e dentro un widget funziona qualsiasi
 primitiva di Solid (`createSignal`, `createMemo`, `createResource`, `Show`, `For`, …).
 
-Questa pagina documenta la **v2.2.0** (`github:vitrine-org/sdk#v2.2.1`). Le API segnate **da 2.2.0**
+Questa pagina documenta la **v2.2.0** (`github:vitrine-org/sdk#v2.3.0`). Le API segnate **da 2.2.0**
 non esistono nelle versioni precedenti.
 
 | Import | Contenuto |
@@ -26,6 +26,7 @@ non esistono nelle versioni precedenti.
 | [`useClock`](#useclock) | hook | Ora corrente, allineata al secondo o al minuto |
 | [`useSettings`](#usesettings) | hook | Impostazioni dell'istanza, aggiornate dal vivo |
 | [`useSize`](#usesize) | hook | Dimensione del widget in DIP, aggiornata dal vivo |
+| [`useResponsive`](#useresponsive) | hook | Forma e scala per layout responsive (**dalla 2.3.0**) |
 | [`useAppearance`](#useappearance) | hook | Tema chiaro/scuro e colore principale di Windows, dal vivo |
 | [`useSystem`](#usesystem) | hook | Metriche di sistema |
 | [`useStorage`](#usestorage) | hook | Valore salvato per istanza |
@@ -115,12 +116,56 @@ La dimensione del widget in DIP. Cambia quando l'utente ridimensiona l'istanza s
 ```tsx
 import { useSize } from "@vitrine/sdk";
 
-export function Adaptive() {
+export function Big() {
   const size = useSize();
-  const compact = () => size().height < 140;
-  return <text style={{ fontSize: compact() ? 24 : 48 }}>{compact() ? "S" : "L"}</text>;
+  // In proporzione al riquadro: lo stesso aspetto a ogni dimensione.
+  return <text style={{ fontSize: Math.min(size().width, size().height) * 0.4 }}>42</text>;
 }
 ```
+
+Per i layout preferisci [`useResponsive`](#useresponsive), che dà anche la forma.
+
+## useResponsive
+
+**Dalla 2.3.0.**
+
+```ts
+function useResponsive(refs: References): Accessor<Responsive>
+// References: [width, height] | { square?: [w, h]; wide?: [w, h]; tall?: [w, h] }
+// Responsive: { width: number; height: number; shape: Shape; scale: number }
+// Shape: "square" | "wide" | "tall"
+```
+
+La dimensione del widget, la sua **forma** e la **scala** di un disegno fatto a una dimensione di
+riferimento. Un widget responsive sceglie il layout solo in base alla forma e moltiplica ogni misura
+di quel layout (dimensioni del testo, margini, spaziature, tratti, raggi, icone) per `scale`. Un
+orologio 4 × 4 è allora l'orologio 2 × 2 più grande: con la dimensione non compare e non sparisce
+nulla, e i margini restano in proporzione.
+
+- `shape` dipende dalle proporzioni del riquadro: `wide` da 1,25 : 1 (3 × 2, 4 × 2, 5 × 4 celle),
+  `tall` da 1 : 1,25 (2 × 3, 4 × 5), `square` in mezzo (da 2 × 2 a 6 × 5). La galleria usa la stessa
+  regola per proporre una dimensione per forma.
+- `scale` adatta il riferimento della forma al riquadro senza tagli:
+  `min(width / refWidth, height / refHeight)`. Una forma mancante usa il riferimento `square`.
+
+```tsx
+import { mount, useResponsive } from "@vitrine/sdk";
+
+function Clock() {
+  // Disegnato a 2 × 2 (136 × 136 DIP) e a 4 × 2 (280 × 136).
+  const r = useResponsive({ square: [136, 136], wide: [280, 136] });
+  const px = (v: number) => v * r().scale;
+  return (
+    <view style={{ width: "100%", height: "100%", padding: px(16), borderRadius: px(22) }}>
+      {r().shape === "wide" ? <WorldClocks px={px} /> : <Dial px={px} />}
+    </view>
+  );
+}
+mount(() => <Clock />);
+```
+
+Le stesse regole sono esportate come funzioni: `shapeOf(width, height)`,
+`fitScale(width, height, [refWidth, refHeight])` e `responsive(width, height, refs)`.
 
 ## useAppearance
 

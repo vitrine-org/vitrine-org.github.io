@@ -50,8 +50,12 @@ edges of the work area. A widget of *n* × *m* cells measures `n × 64 + (n − 
   across a pack and the whole desktop lines up.
 - **Pick the default size where the design is best**, then set `min` to the size where nothing is cut
   and `max` to where the design still holds. Test every size in between in edit layout.
-- **Scale with the space.** Read [`useSize()`](/docs/reference/sdk/) and derive font sizes and gaps
-  from it rather than hard-coding them for the default size.
+- **Be responsive: shape picks the layout, size only scales it.** Draw one design per shape you
+  support (square, wide, tall) and scale every dimension with
+  [`useResponsive()`](/docs/reference/sdk/#useresponsive). Never add or drop elements at a size
+  threshold: a user who enlarges a widget expects the same widget, larger. If a larger layout shows
+  more (a forecast, a month), give it its own shape and list it in
+  [`variants`](/docs/reference/manifest/#variants), or make it a separate widget.
 
 ## Be legible on any wallpaper
 
@@ -120,7 +124,7 @@ they are. See [Interactivity](/docs/guides/interactivity/).
 
 ## Before you publish
 
-- The widget looks intentional at its min, default and max size.
+- The widget looks intentional at every size between its min and max, and identical (only larger) at every size of the same shape.
 - It reads on a white, a black and a busy wallpaper, as a card and bare.
 - Light, dark and System all work, and switching Windows' mode updates it live.
 - Nothing animates while nothing changes.

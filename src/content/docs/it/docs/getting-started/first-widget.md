@@ -11,7 +11,7 @@ e Git (npm scarica l'SDK da GitHub).
 ## 1. Crea il pack
 
 ```sh
-npx github:vitrine-org/sdk#v2.2.1 create my-widgets --id=dev.you.widgets
+npx github:vitrine-org/sdk#v2.3.0 create my-widgets --id=dev.you.widgets
 cd my-widgets
 npm install
 ```
@@ -25,7 +25,7 @@ Lo scheletro è un pack con un solo widget, un orologio:
 ```
 my-widgets/
 ├── vitrine.json            pack manifest: id, name, version, widgets
-├── package.json            depends on github:vitrine-org/sdk#v2.2.1
+├── package.json            depends on github:vitrine-org/sdk#v2.3.0
 ├── tsconfig.json
 └── src/clock/
     ├── index.tsx           the widget

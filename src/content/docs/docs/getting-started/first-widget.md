@@ -11,7 +11,7 @@ Git (npm fetches the SDK from GitHub).
 ## 1. Scaffold a pack
 
 ```sh
-npx github:vitrine-org/sdk#v2.2.1 create my-widgets --id=dev.you.widgets
+npx github:vitrine-org/sdk#v2.3.0 create my-widgets --id=dev.you.widgets
 cd my-widgets
 npm install
 ```
@@ -24,7 +24,7 @@ The scaffold is a pack with one widget, a clock:
 ```
 my-widgets/
 ├── vitrine.json            pack manifest: id, name, version, widgets
-├── package.json            depends on github:vitrine-org/sdk#v2.2.1
+├── package.json            depends on github:vitrine-org/sdk#v2.3.0
 ├── tsconfig.json
 └── src/clock/
     ├── index.tsx           the widget

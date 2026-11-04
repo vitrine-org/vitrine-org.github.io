@@ -70,6 +70,7 @@ Unknown fields are ignored. The file must be at most 1 MB.
 | `settings` | string | no | Safe path to a [settings schema](/docs/reference/settings-schema/). |
 | `preview` | string | no | Safe path to a preview image, shown in the control panel gallery. Required by the [store](/docs/publishing/#store-checks). |
 | `size` | object | no | Grid size in cells; see below. |
+| `variants` | `[columns, rows][]` | no | Sizes the gallery offers, one per layout of the widget; see below. Engine 2.0.4 and later. |
 | `interactive` | boolean | no | Default `false`. When `true`, the widget receives pointer input (clicks, hover, wheel). |
 | `permissions` | string[] | no | Default `[]`. See [Permissions](/docs/reference/permissions/). |
 
@@ -85,6 +86,14 @@ Unknown fields are ignored. The file must be at most 1 MB.
 
 Every value must be at least 1, and on each axis `min ≤ default ≤ max`. A cell is 64 × 64 DIPs with
 8 DIPs between cells, so a widget `w` cells wide is `64w + 8(w − 1)` DIPs wide (4 cells: 280 DIPs).
+
+### variants
+
+The sizes the Add widget gallery and the control panel offer, one per layout the widget has, for
+example `[[2, 2], [4, 2], [4, 5]]` for a square, a wide and a tall layout. Each must lie within
+`size.min` and `size.max` and appear once. Without `variants`, the gallery offers the default size
+and, among `min` and `max`, one more size for each other shape (see
+[`useResponsive`](/docs/reference/sdk/#useresponsive)): a widget that only scales shows one size.
 
 ## Paths
 

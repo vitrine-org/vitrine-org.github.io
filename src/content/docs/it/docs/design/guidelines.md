@@ -53,8 +53,12 @@ l'altra e un margine di 24 DIP dai bordi dell'area di lavoro. Un widget di *n* �
 - **Scegli come predefinita la dimensione in cui il disegno rende meglio**, poi fissa `min` dove
   nulla viene tagliato e `max` dove il disegno regge ancora. Prova ogni misura intermedia in Modifica
   layout.
-- **Scala con lo spazio.** Leggi [`useSize()`](/it/docs/reference/sdk/) e ricava da lì dimensioni del
-  testo e spaziature, invece di fissarle per la misura predefinita.
+- **Sii responsive: la forma sceglie il layout, la dimensione lo scala soltanto.** Disegna un
+  layout per ogni forma che supporti (quadrata, larga, alta) e scala ogni misura con
+  [`useResponsive()`](/it/docs/reference/sdk/#useresponsive). Non aggiungere né togliere elementi a
+  una soglia di dimensione: chi ingrandisce un widget si aspetta lo stesso widget, più grande. Se un
+  layout più grande mostra di più (previsioni, un mese), dagli una forma sua ed elencala in
+  [`variants`](/it/docs/reference/manifest/#variants), oppure rendilo un widget a parte.
 
 ## Leggibile su qualunque sfondo
 
@@ -126,7 +130,7 @@ sempre le icone. Vedi [Interattività](/it/docs/guides/interactivity/).
 
 ## Prima di pubblicare
 
-- Il widget sembra voluto alla dimensione minima, predefinita e massima.
+- Il widget sembra voluto a ogni dimensione tra la minima e la massima, e identico (solo più grande) a ogni dimensione della stessa forma.
 - Si legge su uno sfondo bianco, su uno nero e su uno movimentato, sia su scheda sia nudo.
 - Chiaro, Scuro e Sistema funzionano, e cambiare la modalità di Windows lo aggiorna dal vivo.
 - Nulla si muove quando nulla cambia.

@@ -26,13 +26,13 @@ Run without a command it prints the usage; an unknown command also exits with co
 ### create
 
 ```sh
-npx github:vitrine-org/sdk#v2.2.1 create my-widgets --id=dev.you.widgets
+npx github:vitrine-org/sdk#v2.3.0 create my-widgets --id=dev.you.widgets
 cd my-widgets && npm install
 ```
 
 Copies the template (a clock widget with a settings schema) into `<folder>`, which must be empty or
 not exist. `--id` sets the pack id; the default is `dev.example.<folder name>`. The generated
-`package.json` depends on `github:vitrine-org/sdk#v2.2.1` and defines the scripts `build`, `pack` and
+`package.json` depends on `github:vitrine-org/sdk#v2.3.0` and defines the scripts `build`, `pack` and
 `dev`.
 
 ### build

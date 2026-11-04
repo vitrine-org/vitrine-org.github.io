@@ -70,6 +70,7 @@ I campi sconosciuti vengono ignorati. Il file non può superare 1 MB.
 | `settings` | string | no | Percorso sicuro a uno [schema delle impostazioni](/it/docs/reference/settings-schema/). |
 | `preview` | string | no | Percorso sicuro a un'immagine di anteprima, mostrata nella galleria del pannello di controllo. Obbligatoria per lo [store](/it/docs/publishing/#controlli-dello-store). |
 | `size` | object | no | Dimensione in celle della griglia; vedi sotto. |
+| `variants` | `[colonne, righe][]` | no | Dimensioni proposte dalla galleria, una per layout del widget; vedi sotto. Dal motore 2.0.4. |
 | `interactive` | boolean | no | Predefinito `false`. Con `true` il widget riceve l'input del puntatore (clic, passaggio, rotellina). |
 | `permissions` | string[] | no | Predefinito `[]`. Vedi [Permessi](/it/docs/reference/permissions/). |
 
@@ -86,6 +87,15 @@ I campi sconosciuti vengono ignorati. Il file non può superare 1 MB.
 Ogni valore deve essere almeno 1 e, su ciascun asse, `min ≤ default ≤ max`. Una cella misura
 64 × 64 DIP con 8 DIP di spazio tra celle, quindi un widget largo `w` celle misura `64w + 8(w − 1)` DIP
 (4 celle: 280 DIP).
+
+### variants
+
+Le dimensioni proposte dalla galleria Aggiungi widget e dal pannello di controllo, una per ciascun
+layout del widget, per esempio `[[2, 2], [4, 2], [4, 5]]` per un layout quadrato, uno largo e uno
+alto. Ognuna deve stare tra `size.min` e `size.max` e comparire una volta sola. Senza `variants`, la
+galleria propone la dimensione predefinita e, tra `min` e `max`, una dimensione in più per ogni altra
+forma (vedi [`useResponsive`](/it/docs/reference/sdk/#useresponsive)): un widget che si limita a
+scalare mostra una sola dimensione.
 
 ## Percorsi
 

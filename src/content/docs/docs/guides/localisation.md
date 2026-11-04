@@ -21,7 +21,7 @@ Vitrine follows the Windows display language unless the user picks another in th
 (**General → Language**). When the language changes, widgets restart.
 
 :::note
-Localisation needs `@vitrine/sdk` 2.2.0 (`github:vitrine-org/sdk#v2.2.1`) and a Vitrine release with
+Localisation needs `@vitrine/sdk` 2.2.0 (`github:vitrine-org/sdk#v2.3.0`) and a Vitrine release with
 localisation support. Older versions of Vitrine ignore every field on this page, and `useLanguage()`
 returns `"en"` on them, so a localised pack still works there, in English.
 :::
