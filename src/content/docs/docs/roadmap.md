@@ -16,7 +16,7 @@ this page tracks where each part stands.
 | System metrics and power management | Done |
 | Interactive widgets beneath the icons, text input through `prompt()` | Done |
 | Control panel with live previews, Windows 11 menus | Done |
-| Essentials (13 widgets) and the four themes | Done |
+| Essentials (Conky), Vega and the four themes | Done |
 | Ten UI languages and localisable packs | Done |
 | [Store](/packs/) catalogue and website | Done |
 | Store and search inside the control panel | In progress |

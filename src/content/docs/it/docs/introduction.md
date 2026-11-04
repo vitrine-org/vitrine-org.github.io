@@ -16,10 +16,12 @@ del mouse o uno scroll che non prende un'icona arriva al widget sottostante.
   (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>), mentre le finestre aperte si fanno da parte. Ogni
   monitor ha la sua griglia, e lo stesso widget può girare in quante istanze vuoi, ognuna con le sue
   impostazioni.
-- **Essentials, 13 widget** nello stile di Windows 11: orologio, orologio analogico, calendario,
-  meteo, sistema, rete, batteria, dischi, cose da fare, nota, link, conto alla rovescia e
-  avanzamento. Ognuno può essere in acrilico smerigliato o nudo sullo sfondo, e segue dal vivo la
-  modalità chiara o scura di Windows.
+- **Essentials**, incluso: [Conky](/it/packs/#dev.vitrine.essentials), un'unica colonna alta nello
+  stile di Windows 11 con ora e data, il meteo se lo vuoi, poi sistema, CPU, memoria, unità, rete e
+  batteria. Può essere in acrilico smerigliato o nuda sullo sfondo, e segue dal vivo la modalità
+  chiara o scura di Windows.
+- **[Vega](/it/packs/#dev.vitrine.vega)**, un pack ufficiale nello store: widget puliti e arrotondati
+  per tutti i giorni (orologio, calendario, meteo, batterie, promemoria e una nota), chiari e scuri.
 - **Quattro temi**, [Sargas, Antares, Mond e Alnitak](/it/packs/): look completi disegnati
   direttamente sullo sfondo, ognuno con il suo carattere.
 - **Un pannello di controllo** con anteprime dal vivo: ogni impostazione mostra subito il suo effetto

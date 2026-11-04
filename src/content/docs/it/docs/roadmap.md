@@ -16,7 +16,7 @@ release; questa pagina mostra a che punto è ogni parte.
 | Metriche di sistema e gestione dell'energia | Fatto |
 | Widget interattivi sotto le icone, inserimento di testo con `prompt()` | Fatto |
 | Pannello di controllo con anteprime dal vivo, menu di Windows 11 | Fatto |
-| Essentials (13 widget) e i quattro temi | Fatto |
+| Essentials (Conky), Vega e i quattro temi | Fatto |
 | Dieci lingue dell'interfaccia e pacchetti localizzabili | Fatto |
 | Catalogo dello [store](/it/packs/) e sito | Fatto |
 | Store e ricerca dentro il pannello di controllo | In corso |

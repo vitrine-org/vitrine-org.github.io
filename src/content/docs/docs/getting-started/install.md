@@ -14,8 +14,8 @@ the notification area.
    [GitHub Releases](https://github.com/vitrine-org/vitrine/releases).
 2. Run it. Vitrine goes to `%LOCALAPPDATA%\Programs\Vitrine`; the optional **Start with Windows**
    component adds it to your sign-in programs.
-3. On first run Vitrine installs the bundled **Essentials** pack and places a Clock and a System
-   widget in the top-right corner of the main display.
+3. On first run Vitrine installs the bundled **Essentials** pack, with its Conky column. Press
+   <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd> and drag it from the gallery onto the desktop.
 
 The installer also associates `.vitrine` files with Vitrine, so a pack installs with a double-click.
 

@@ -41,9 +41,9 @@ const en = {
 	},
 	glass: {
 		h: 'Frosted glass that follows Windows',
-		p: 'Widgets blur the real wallpaper behind them, like Windows 11 acrylic. They switch between light and dark with Windows, live, and take your accent colour.',
+		p: 'Conky, the column that comes with Essentials, blurs the real wallpaper behind it like Windows 11 acrylic: time, weather, system, CPU, memory, drives, network and battery. It switches between light and dark with Windows, live, and takes your accent colour.',
 		link: 'Glass and legibility',
-		alt: 'The same Essentials widgets in the light and the dark theme, side by side.',
+		alt: 'The Conky column from Essentials in the light and the dark theme, side by side.',
 		light: 'Light',
 		dark: 'Dark',
 	},
@@ -63,12 +63,13 @@ const en = {
 		menu: ['Add widgets…', 'Quick add', 'Edit layout', 'Settings…', 'Pause widgets', 'Start with Windows', 'Get more widgets', 'Quit Vitrine'],
 		menuLabel: 'Vitrine tray menu',
 	},
-	essentials: {
-		eyebrow: 'Included',
-		h: 'Essentials, 13 widgets',
-		p: 'The everyday set, in the Windows 11 style. Each one comes as an acrylic card or bare on the wallpaper, in light, dark or following Windows.',
-		alt: 'All thirteen Essentials widgets on one desktop.',
-		widgets: ['Clock', 'Analog Clock', 'Calendar', 'Weather', 'System', 'Network', 'Battery', 'Drives', 'To Do', 'Note', 'Links', 'Countdown', 'Progress'],
+	vega: {
+		eyebrow: 'Official pack',
+		h: 'Vega, a complete set',
+		p: 'Clean, rounded widgets for every day, in light and dark. One double-click from the store, like every pack.',
+		alt: 'The six Vega widgets on one desktop: clock, weather, calendar, reminders, batteries and a note.',
+		link: 'Vega in the store',
+		widgets: ['Clock', 'Calendar', 'Weather', 'Batteries', 'Reminders', 'Note'],
 	},
 	themes: {
 		eyebrow: 'Themes',
@@ -145,9 +146,9 @@ const it: typeof en = {
 	},
 	glass: {
 		h: 'Vetro smerigliato che segue Windows',
-		p: 'I widget sfocano lo sfondo vero che hanno dietro, come l\'acrilico di Windows 11. Passano dal chiaro allo scuro insieme a Windows, in tempo reale, e prendono il tuo colore d\'accento.',
+		p: 'Conky, la colonna inclusa in Essentials, sfoca lo sfondo vero che ha dietro come l\'acrilico di Windows 11: ora, meteo, sistema, CPU, memoria, unità, rete e batteria. Passa dal chiaro allo scuro insieme a Windows, in tempo reale, e prende il tuo colore d\'accento.',
 		link: 'Vetro e leggibilità',
-		alt: 'Gli stessi widget di Essentials nel tema chiaro e in quello scuro, affiancati.',
+		alt: 'La colonna Conky di Essentials nel tema chiaro e in quello scuro, una accanto all\'altra.',
 		light: 'Chiaro',
 		dark: 'Scuro',
 	},
@@ -167,12 +168,13 @@ const it: typeof en = {
 		menu: ['Aggiungi widget…', 'Aggiunta rapida', 'Modifica layout', 'Impostazioni…', 'Sospendi widget', 'Avvia con Windows', 'Trova altri widget', 'Esci da Vitrine'],
 		menuLabel: 'Menu di Vitrine nell\'area di notifica',
 	},
-	essentials: {
-		eyebrow: 'Incluso',
-		h: 'Essentials, 13 widget',
-		p: 'Il set di tutti i giorni, nello stile di Windows 11. Ognuno può essere una scheda acrilica o stare nudo sullo sfondo, chiaro, scuro o come Windows.',
-		alt: 'Tutti e tredici i widget di Essentials su un unico desktop.',
-		widgets: ['Orologio', 'Orologio analogico', 'Calendario', 'Meteo', 'Sistema', 'Rete', 'Batteria', 'Dischi', 'Da fare', 'Nota', 'Link', 'Conto alla rovescia', 'Avanzamento'],
+	vega: {
+		eyebrow: 'Pack ufficiale',
+		h: 'Vega, un set completo',
+		p: 'Widget puliti e arrotondati per tutti i giorni, chiari e scuri. Si installa con un doppio clic dallo store, come ogni pack.',
+		alt: 'I sei widget di Vega su un unico desktop: orologio, meteo, calendario, promemoria, batterie e una nota.',
+		link: 'Vega nello store',
+		widgets: ['Orologio', 'Calendario', 'Meteo', 'Batterie', 'Promemoria', 'Nota'],
 	},
 	themes: {
 		eyebrow: 'Temi',

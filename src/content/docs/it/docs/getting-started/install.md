@@ -14,8 +14,8 @@ amministratore e risiede nell'area di notifica.
    [release su GitHub](https://github.com/vitrine-org/vitrine/releases).
 2. Avvialo. Vitrine viene installato in `%LOCALAPPDATA%\Programs\Vitrine`; il componente facoltativo
    **Avvia con Windows** lo aggiunge ai programmi eseguiti all'accesso.
-3. Al primo avvio Vitrine installa il pack incluso, **Essentials**, e mette un Orologio e un widget di
-   Sistema nell'angolo in alto a destra dello schermo principale.
+3. Al primo avvio Vitrine installa il pack incluso, **Essentials**, con la sua colonna Conky. Premi
+   <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd> e trascinala dalla galleria sul desktop.
 
 L'installer associa inoltre i file `.vitrine` a Vitrine: un pack si installa con un doppio clic.
 

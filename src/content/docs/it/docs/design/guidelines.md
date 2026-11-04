@@ -45,8 +45,8 @@ l'altra e un margine di 24 DIP dai bordi dell'area di lavoro. Un widget di *n* �
 | 5 | 352 |
 | 6 | 424 |
 
-- **Usa una scala di spaziature a passi di 4 DIP** dentro il widget: 4, 8, 12, 16, 24. L'orologio di
-  Essentials, per esempio, ha 16 DIP di margine interno orizzontale, 24 quando è alto due celle.
+- **Usa una scala di spaziature a passi di 4 DIP** dentro il widget: 4, 8, 12, 16, 24. Una scheda, per
+  esempio, ha 16 DIP di margine interno orizzontale, 24 quando è alta due celle.
 - **Allinea ai bordi che condividi.** Due widget affiancati sono separati esattamente dagli 8 DIP
   della griglia: con 16 DIP di margine interno, i contenuti cadono su un ritmo comune di 32 DIP. Tieni
   lo stesso margine in tutto il pacchetto e l'intero desktop risulta allineato.

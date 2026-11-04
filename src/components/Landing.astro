@@ -131,8 +131,8 @@ const half = '(min-width: 900px) 560px, calc(100vw - 32px)';
 					<a href={`${docs}guides/glass-and-legibility/`}><Icon name="blur" />{t.glass.link}</a>
 				</div>
 				<figure class="visual split" data-split>
-					<Image class="split-light" src={shot(`essentials-${lang}-light`)} alt={t.glass.alt} widths={[600, 1100, 1808]} sizes={half} />
-					<Image class="split-dark" src={shot(`essentials-${lang}-dark`)} alt="" widths={[600, 1100, 1808]} sizes={half} />
+					<Image class="split-light" src={shot(`conky-${lang}-light`)} alt={t.glass.alt} widths={[600, 1100, 1600]} sizes={half} />
+					<Image class="split-dark" src={shot(`conky-${lang}-dark`)} alt="" widths={[600, 1100, 1600]} sizes={half} />
 					<figcaption><span>{t.glass.light}</span><span>{t.glass.dark}</span></figcaption>
 				</figure>
 			</section>
@@ -178,16 +178,17 @@ const half = '(min-width: 900px) 560px, calc(100vw - 32px)';
 
 			<section class="showcase container">
 				<div class="show-head" data-reveal>
-					<p class="eyebrow">{t.essentials.eyebrow}</p>
-					<h2>{t.essentials.h}</h2>
-					<p>{t.essentials.p}</p>
+					<p class="eyebrow">{t.vega.eyebrow}</p>
+					<h2>{t.vega.h}</h2>
+					<p>{t.vega.p}</p>
+					<a class="text-link" href={`${t.base}packs/#dev.vitrine.vega`}><Icon name="building-store" />{t.vega.link}</a>
 				</div>
 				<figure class="board-shot">
-					<Image class="shot-light" src={shot(`essentials-${lang}-light`)} alt={t.essentials.alt} widths={[800, 1300, 1808]} sizes={wide} />
-					<Image class="shot-dark" src={shot(`essentials-${lang}-dark`)} alt={t.essentials.alt} widths={[800, 1300, 1808]} sizes={wide} />
+					<Image class="shot-light" src={shot(`vega-${lang}-light`)} alt={t.vega.alt} widths={[800, 1300, 1808]} sizes={wide} />
+					<Image class="shot-dark" src={shot(`vega-${lang}-dark`)} alt={t.vega.alt} widths={[800, 1300, 1808]} sizes={wide} />
 				</figure>
 				<ul class="chips">
-					{t.essentials.widgets.map((w) => <li>{w}</li>)}
+					{t.vega.widgets.map((w) => <li>{w}</li>)}
 				</ul>
 			</section>
 

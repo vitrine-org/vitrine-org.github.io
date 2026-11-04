@@ -15,9 +15,12 @@ that misses an icon reaches the widget underneath.
   rectangle of cells; you move and resize it in **edit layout** (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>),
   while your open windows step aside. Each monitor has its own grid, and the same widget can run as
   many instances as you like, each with its own settings.
-- **Essentials, 13 widgets** in the Windows 11 style: clock, analog clock, calendar, weather, system,
-  network, battery, drives, to-do, note, links, countdown and progress. Each one comes as frosted
-  acrylic or bare on the wallpaper, and follows Windows light and dark mode live.
+- **Essentials**, included: [Conky](/packs/#dev.vitrine.essentials), one tall column in the Windows 11
+  style with the time and date, the weather if you want it, then system, CPU, memory, drives, network
+  and battery. It comes as frosted acrylic or bare on the wallpaper, and follows Windows light and
+  dark mode live.
+- **[Vega](/packs/#dev.vitrine.vega)**, an official pack in the store: clean, rounded widgets for
+  every day (clock, calendar, weather, batteries, reminders and a note), in light and dark.
 - **Four themes**, [Sargas, Antares, Mond and Alnitak](/packs/), complete looks drawn straight on
   the wallpaper, each in its own typeface.
 - **A control panel** with live previews: every setting shows its effect on the widget as you change it.

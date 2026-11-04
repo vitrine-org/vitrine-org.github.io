@@ -43,8 +43,8 @@ edges of the work area. A widget of *n* × *m* cells measures `n × 64 + (n − 
 | 5 | 352 |
 | 6 | 424 |
 
-- **Use a 4 DIP spacing scale** inside the widget: 4, 8, 12, 16, 24. The Essentials clock, for
-  example, pads its card by 16 DIPs horizontally and 24 when it is two cells tall.
+- **Use a 4 DIP spacing scale** inside the widget: 4, 8, 12, 16, 24. A card, for example, pads
+  its content by 16 DIPs horizontally and 24 when it is two cells tall.
 - **Align to the edges you share.** Two widgets side by side are separated by exactly the 8 DIP gap,
   so a 16 DIP inner padding puts their content on a common 32 DIP rhythm. Keep the padding identical
   across a pack and the whole desktop lines up.
