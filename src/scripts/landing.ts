@@ -42,9 +42,12 @@ function tick() {
 			if (lastHm) flash(hmPart);
 		}
 	}
-	if (hm !== lastHm) {
-		if (trayTime) trayTime.textContent = d.toLocaleTimeString(deskLocale, { hour: '2-digit', minute: '2-digit' });
-		if (trayDate) trayDate.textContent = d.toLocaleDateString(deskLocale, { day: '2-digit', month: '2-digit', year: 'numeric' });
+	if (!lastHm) {
+		// The desktop widgets are real renders taken at this moment: the taskbar
+		// shows the same time so the scene stays consistent.
+		const shot = new Date(2026, 10, 4, 11, 8);
+		if (trayTime) trayTime.textContent = shot.toLocaleTimeString(deskLocale, { hour: '2-digit', minute: '2-digit' });
+		if (trayDate) trayDate.textContent = shot.toLocaleDateString(deskLocale, { day: '2-digit', month: '2-digit', year: 'numeric' });
 	}
 	lastHm = hm;
 }
