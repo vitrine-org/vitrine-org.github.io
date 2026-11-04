@@ -4,7 +4,7 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://vitrine-widgets.github.io',
+	site: 'https://vitrine-org.github.io',
 	integrations: [
 		starlight({
 			title: 'Vitrine',
@@ -24,10 +24,10 @@ export default defineConfig({
 				it: { label: 'Italiano', lang: 'it' },
 			},
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/vitrine-widgets/vitrine' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/vitrine-org/vitrine' },
 			],
 			editLink: {
-				baseUrl: 'https://github.com/vitrine-widgets/vitrine-widgets.github.io/edit/main/',
+				baseUrl: 'https://github.com/vitrine-org/vitrine-org.github.io/edit/main/',
 			},
 			components: {
 				Header: './src/components/DocsHeader.astro',

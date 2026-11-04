@@ -29,7 +29,7 @@ const otherHref = Astro.props.otherHref ?? t.other.href;
 		<a href={`${t.base}docs/introduction/`} aria-current={inDocs ? 'page' : undefined}>
 			<Icon name="book-2" />{t.nav.docs}
 		</a>
-		<a class="hide-narrow" href="https://github.com/vitrine-widgets/vitrine">
+		<a class="hide-narrow" href="https://github.com/vitrine-org/vitrine">
 			<Icon name="brand-github" />GitHub
 		</a>
 		<a class="bar-lang" href={otherHref} hreflang={lang === 'en' ? 'it' : 'en'}>
